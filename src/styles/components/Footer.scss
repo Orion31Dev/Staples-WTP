@@ -1,0 +1,13 @@
+@import '../style';
+
+.footer {
+  background: $gray-2;
+  color: $white;
+
+  padding: 0.5em 3em;
+
+  a {
+    text-decoration: underline;
+    color: $cyan;
+  }
+}

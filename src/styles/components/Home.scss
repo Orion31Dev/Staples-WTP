@@ -1,0 +1,65 @@
+@import '../style';
+
+.home {
+  .logo {
+    position: absolute;
+    width: 70vw;
+    margin: 0 auto;
+
+    &.fade {
+      opacity: 0.1;
+    }
+  }
+
+  .title {
+    z-index: 10;
+
+    font-size: 6em;
+    opacity: 0;
+
+    span {
+      color: $blue;
+    }
+
+    &,
+    span {
+      font-weight: $font-weight-bold;
+    }
+
+    &.fade {
+      opacity: 1;
+
+      span {
+        opacity: .8;
+      }
+    }
+  }
+
+  .links {
+    font-size: 2.5em;
+
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    margin-top: 3.5em;
+
+    opacity: 0;
+
+    &.fade {
+      opacity: 1;
+    }
+
+    &, div { 
+      display: inline-block;
+    }
+
+    .link {
+      text-decoration: underline;
+    }
+
+    .sep {
+      color: $gray-5;
+      margin: 0 .2em;
+    }
+  }
+}
