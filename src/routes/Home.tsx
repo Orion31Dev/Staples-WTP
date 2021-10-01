@@ -22,7 +22,7 @@ export default function Home() {
         <span>STAPLES</span> WE THE PEOPLE
       </div>
       <div className={'links' + (showTitle ? ' fade' : '')}>
-        <a href="/units" className="link styled">
+        <a href="/units" className="link">
           Units
         </a>
         <div className="sep">|</div>

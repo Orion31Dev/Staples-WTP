@@ -8,16 +8,16 @@ $orange: #ec7a23;
 $yellow: #ecca23;
 $green: #7cca23;
 $cyan: #3cdac3;
-$blue: #080591;
+$blue: #1d1aeb;
 $purple: #cc2ad3;
 
-$gray-5: mix($black, $white, 40%);
-$gray-4: mix($black, $white, 60%);
-$gray-3: mix($black, $white, 80%);
-$gray-2: mix($black, $white, 90%);
-$gray-1: mix($black, $white, 95%);
+$bkg-color: #11111b;
 
-$bkg-color: $black;
+$gray-5: mix($bkg-color, $white, 40%);
+$gray-4: mix($bkg-color, $white, 60%);
+$gray-3: mix($bkg-color, $white, 80%);
+$gray-2: mix($bkg-color, $white, 90%);
+$gray-1: mix($bkg-color, $white, 95%);
 
 $font-weight-black: 900;
 $font-weight-bold: 700;
@@ -32,8 +32,7 @@ $default-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, 
 
 html,
 body,
-#root 
-{
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -59,11 +58,10 @@ a:visited {
   color: inherit;
 
   &.styled {
-    text-decoration: underline;
-    color: $white;
+    color: $gray-4;
 
     &:hover {
-      color: $gray-5;
+      color: $cyan;
     }
   }
 }
@@ -74,7 +72,6 @@ a:visited {
 
 .section {
   width: 100%;
-  margin: 3vmin 0;
 }
 
 .flex {

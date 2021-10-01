@@ -2,6 +2,7 @@
 
 .units {
   align-content: center;
+  margin-top: 3vmin;
 
   .title {
     width: 100%;
@@ -10,33 +11,36 @@
     font-weight: $font-weight-bold;
   }
 
+  &.fade {
+    a {
+      opacity: 0;
+    }
+  }
+
+  a {
+    // Fade in
+    @for $i from 1 through 6 {
+      &:nth-of-type(#{$i}) {
+        transition-delay: #{($i - 1) * 0.1}s;
+        transition-duration: .8s;
+      }
+    }
+  }
+
   .unit {
     width: 30vmin;
     height: 30vmin;
-    font-size: 6vw;
 
+    border: 0.1vmin solid $white;
+    border-radius: 50%;
+
+    margin: 0.2em;
+
+    font-size: 6vw;
     font-weight: $font-weight-bold;
 
     user-select: none;
     cursor: pointer;
-
-    svg {
-      width: 80%;
-      height: 80%;
-
-      * {
-        transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
-      }
-    }
-
-    @media screen and (max-width: $breakpoint-mobile) {
-      width: 50vw;
-      height: 50vw;
-      font-size: 10vw;
-    }
-
-    border: 0.1vmin solid $white;
-    border-radius: 50%;
 
     &:hover {
       background: $cyan;
@@ -53,7 +57,20 @@
       }
     }
 
-    margin: 0.2em;
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: 50vw;
+      height: 50vw;
+      font-size: 10vw;
+    }
+
+    svg {
+      width: 80%;
+      height: 80%;
+
+      * {
+        transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+      }
+    }
   }
 
   .comp-br {

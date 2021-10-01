@@ -1,0 +1,19 @@
+@import '../../style.scss';
+
+.questions {
+  margin: 4vmin auto;
+
+  width: 60%;
+  font-size: 1.2em;
+
+  .question {
+    font-weight: $font-weight-bold;
+    margin: 3vmin 0;
+
+    line-height: 1.5em;
+
+    li {
+      font-weight: $font-weight-light;
+    }
+  }
+}

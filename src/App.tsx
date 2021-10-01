@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Router>
-      <div style={{ height: '100%' }}>
+      <div style={{ minHeight: '100%' }}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route>

@@ -3,7 +3,7 @@
 .home {
   font-size: 3vw;
   height: 100%;
-  
+
   .logo {
     position: absolute;
     width: 70vw;
@@ -52,17 +52,22 @@
       opacity: 1;
     }
 
-    &, div { 
+    &,
+    div {
       display: inline-block;
     }
 
     .link {
-      text-decoration: underline;
+      color: $gray-5;
+
+      &:hover {
+        color: $white;
+      }
     }
 
     .sep {
       color: $gray-4;
-      margin: 0 .2em;
+      margin: 0 0.2em;
     }
   }
 }
