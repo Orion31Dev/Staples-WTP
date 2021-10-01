@@ -67,9 +67,11 @@ export default function Footer() {
 
   return (
     <div className="footer">
-      {/*<div className="credits">
-        Made by Ryan Salik. <a href="https://github.com/Orion31Dev/Staples-WTP">GitHub</a>
-  </div>*/}
+      {
+        <div className="credits">
+          Made by Ryan Salik. <a href="https://github.com/Orion31Dev/Staples-WTP">GitHub</a>
+        </div>
+      }
       <div className="clock">
         <div className={'col0 col' + (col0slide ? ' slide' : '')}>
           <div className="days">{subtractFromString(days, 1, true)}</div>
