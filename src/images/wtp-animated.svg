@@ -10,10 +10,10 @@
   </defs>
   <linearGradient id="left-to-right">
       <stop offset="0" stop-color="#fff">
-        <animate dur="1.5s" attributeName="offset" fill="freeze" restart="always" from="0" to="1" />
+        <animate dur="1s" attributeName="offset" fill="freeze" restart="always" from="0" to="1" />
       </stop>
       <stop offset="0" stop-color="#ffffff00">
-        <animate dur="1.5s" attributeName="offset" fill="freeze" restart="always" from="0" to="1" />
+        <animate dur="1s" attributeName="offset" fill="freeze" restart="always" from="0" to="1" />
       </stop>
       
     </linearGradient>

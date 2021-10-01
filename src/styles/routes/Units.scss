@@ -1,0 +1,68 @@
+@import '../style';
+
+.units {
+  align-content: center;
+
+  .title {
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+    font-weight: $font-weight-bold;
+  }
+
+  .unit {
+    width: 30vmin;
+    height: 30vmin;
+    font-size: 6vw;
+
+    font-weight: $font-weight-bold;
+
+    user-select: none;
+    cursor: pointer;
+
+    svg {
+      width: 80%;
+      height: 80%;
+
+      * {
+        transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+      }
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: 50vw;
+      height: 50vw;
+      font-size: 10vw;
+    }
+
+    border: 0.1vmin solid $white;
+    border-radius: 50%;
+
+    &:hover {
+      background: $cyan;
+      border-color: $cyan;
+      color: $bkg-color;
+
+      svg * {
+        stroke: $bkg-color;
+      }
+
+      // Unit 2 has to be special :/
+      &.unit2 *:not(polyline) {
+        fill: $bkg-color;
+      }
+    }
+
+    margin: 0.2em;
+  }
+
+  .comp-br {
+    width: 100%;
+  }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    .mobile-br {
+      width: 100%;
+    }
+  }
+}

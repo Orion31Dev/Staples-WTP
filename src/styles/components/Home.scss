@@ -1,6 +1,9 @@
 @import '../style';
 
 .home {
+  font-size: 3vw;
+  height: 100%;
+  
   .logo {
     position: absolute;
     width: 70vw;
@@ -14,7 +17,7 @@
   .title {
     z-index: 10;
 
-    font-size: 6em;
+    font-size: 2em;
     opacity: 0;
 
     span {
@@ -30,13 +33,13 @@
       opacity: 1;
 
       span {
-        opacity: .8;
+        opacity: 1;
       }
     }
   }
 
   .links {
-    font-size: 2.5em;
+    font-size: 0.8em;
 
     width: 100%;
     text-align: center;
@@ -58,7 +61,7 @@
     }
 
     .sep {
-      color: $gray-5;
+      color: $gray-4;
       margin: 0 .2em;
     }
   }

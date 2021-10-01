@@ -1,0 +1,25 @@
+@import '../style.scss';
+
+.header {
+  display: flex;
+
+  padding: .5em 1.5em;
+  background: $gray-2;
+
+  font-size: 2em;
+
+  .title {
+    font-weight: $font-weight-bold;
+  }
+
+  .links {
+    margin: 0 .7em;
+
+    .sep {
+      display: inline-block;
+      margin: -1em .3em 0;
+
+      color: $gray-4;
+    }
+  }
+}
