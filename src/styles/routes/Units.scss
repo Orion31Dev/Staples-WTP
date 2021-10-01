@@ -2,7 +2,15 @@
 
 .units {
   align-content: center;
-  margin-top: 3vmin;
+
+  @media screen and (min-width: $breakpoint-mobile) {
+    margin-top: -1vmin;
+  }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    margin-top: 3vmin;
+  }
+    
 
   .title {
     width: 100%;

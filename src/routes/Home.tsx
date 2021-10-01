@@ -26,6 +26,9 @@ export default function Home() {
           Units
         </a>
         <div className="sep">|</div>
+        <a href="/" className="link">
+          About [WIP]
+        </a>
       </div>
     </div>
   );

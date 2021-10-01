@@ -4,10 +4,82 @@
   background: $gray-1;
   color: $white;
 
-  padding: 0.5em 3em;
+  .credits {
+    padding: 0.5em 3em;
 
-  a {
-    text-decoration: underline;
-    color: $cyan;
+    a {
+      text-decoration: underline;
+      color: $cyan;
+    }
+  }
+
+  .clock {
+    height: 5em;
+
+    font-size: 10vw;
+
+    display: flex;
+    justify-content: center;
+
+    overflow: hidden;
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    z-index: 1;
+
+    &.w {
+      div {
+        color: $gray-2 !important;
+      }
+
+      z-index: 0;
+    }
+
+    .col {
+      margin: -1.1em 0.15em 0;
+
+      &.slide div {
+        animation: slideDown 0.5s ease-in-out forwards;
+      }
+
+      div {
+        color: $cyan;
+        font-weight: $font-weight-bold;
+
+        &.e {
+          z-index: -1;
+        }
+      }
+    }
+
+    &:not(.w) {
+      .col3 {
+        clip-path: polygon(0% 38%, 0% 58%, 100% 58%, 100% 38%);
+      }
+
+      .col2 {
+        clip-path: polygon(0% 78%, 0% 100%, 100% 100%, 100% 78%);
+      }
+
+      .col1 {
+        clip-path: polygon(0% 58%, 0% 78%, 100% 78%, 100% 58%);
+      }
+
+      .col0 {
+        clip-path: polygon(0% 0%, 0% 38%, 100% 38%, 100% 0%);
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(1.2em);
   }
 }

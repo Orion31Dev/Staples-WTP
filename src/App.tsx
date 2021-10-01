@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Router>
-      <div style={{ minHeight: '100%' }}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route>
@@ -21,7 +20,6 @@ function App() {
             </Switch>
           </Route>
         </Switch>
-      </div>
       <Footer></Footer>
     </Router>
   );

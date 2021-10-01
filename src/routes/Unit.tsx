@@ -39,7 +39,7 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
 
   render() {
     return (
-      <div className="unit">
+      <div className="unit section">
         <div></div>
         <div className="img-wrapper flex">{UnitImage(this.props.match.params.unitNumber)}</div>
         <div

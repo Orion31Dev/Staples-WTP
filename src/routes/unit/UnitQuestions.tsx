@@ -1,5 +1,5 @@
 import { IUnit } from './UnitData';
-import '../../styles/routes/unit/UnitQuestions.scss'
+import '../../styles/routes/unit/UnitQuestions.scss';
 
 export default function UnitQuestions(props: { unitData: IUnit }) {
   return (
