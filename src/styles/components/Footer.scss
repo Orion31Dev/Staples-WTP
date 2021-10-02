@@ -79,6 +79,31 @@
       }
     }
   }
+
+  .msg {
+    z-index: 100;
+    font-size: 2vw;
+    font-weight: $font-weight-light;
+
+    position: absolute;
+
+    left: 7%;
+    bottom: -35vw;
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      bottom: -78vw;
+      left: 0;
+      right: 0;
+      text-align: center;
+
+      font-size: 3vw;
+    }
+
+    background: $gray-2;
+    box-shadow: 0.2em 0.2em 0 $gray-1;
+
+    padding: 1em 1em;
+  }
 }
 
 @keyframes slideDown {

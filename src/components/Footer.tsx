@@ -102,6 +102,7 @@ export default function Footer() {
           <div className="seconds e">&nbsp;</div>
         </div>
       </div>
+      <div className="msg">The competition approaches...</div>
       <div className="clock w">
         <div className={'col0 col' + (col0slide ? ' slide' : '')}>
           <div className="days">{subtractFromString(days, 1, true)}</div>
