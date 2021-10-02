@@ -69,7 +69,7 @@ export default function Footer() {
     <div className="footer">
       {
         <div className="credits">
-          Made by Ryan Salik. <a href="https://github.com/Orion31Dev/Staples-WTP">GitHub</a>
+          Website designed by Ryan Salik. <a href="https://github.com/Orion31Dev/Staples-WTP">GitHub</a>
         </div>
       }
       <div className="clock">
