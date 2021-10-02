@@ -52,7 +52,8 @@ export default function Footer() {
         }
       }
 
-      if (seconds === '30') setPastSecs([]);
+      if (seconds === '30') setPastSecs(['30']);
+      if (seconds === '20') setPastSecs(pastSecs.filter(s => s !== '30'));
 
       setTimeout(() => {
         setCol0Slide(false);
