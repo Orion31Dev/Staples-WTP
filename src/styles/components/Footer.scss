@@ -4,14 +4,20 @@
   background: $gray-1;
   color: $white;
 
+  @media screen and (max-width: $breakpoint-mobile) {
+    .credits {
+      font-size: 4vw !important;
+    }
+  }
+
   .credits {
     padding: 0.5em 3em;
     font-size: 1.5em;
+  }
 
-    a {
-      text-decoration: underline;
-      color: $cyan;
-    }
+  a {
+    text-decoration: underline;
+    color: $cyan;
   }
 
   .clock {
