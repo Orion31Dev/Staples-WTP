@@ -27,7 +27,7 @@ export default function Home() {
         </a>
         <div className="sep">|</div>
         <a href="/" className="link">
-          About [WIP]
+          Log in [WIP]
         </a>
       </div>
     </div>
