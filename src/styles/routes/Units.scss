@@ -3,21 +3,13 @@
 .units {
   align-content: center;
 
-  @media screen and (min-width: $breakpoint-mobile) {
-    margin-top: -1vmin;
-  }
+  // @media screen and (min-width: $breakpoint-mobile) {
+  //   margin-top: -1vmin;
+  // }
 
-  @media screen and (max-width: $breakpoint-mobile) {
-    margin-top: 3vmin;
-  }
-    
-
-  .title {
-    width: 100%;
-    font-size: 3em;
-    text-align: center;
-    font-weight: $font-weight-bold;
-  }
+  // @media screen and (max-width: $breakpoint-mobile) {
+  //   margin-top: 3vmin;
+  // }
 
   &.fade {
     a {

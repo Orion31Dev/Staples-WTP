@@ -15,43 +15,45 @@ export default function Units() {
   }, []);
 
   return (
-    <div className={'units section flex' + (fade ? ' fade' : '')}>
+    <div className={'units section' + (fade ? ' fade' : '')}>
       <div className="title">Units</div>
-      <a href="/unit/1">
-        <div className="unit flex">
-          <Unit1Img />
-        </div>
-      </a>
-      <div className="mobile-br"></div>
-      <a href="/unit/2">
-        <div className="unit unit2 flex">
-          <Unit2Img />
-        </div>
-      </a>
-      <div className="mobile-br"></div>
-      <a href="/unit/3">
-        <div className="unit flex">
-          <Unit3Img />
-        </div>
-      </a>
-      <div className="comp-br"></div>
-      <a href="/unit/4">
-        <div className="unit flex">
-          <Unit4Img />
-        </div>
-      </a>
-      <div className="mobile-br"></div>
-      <a href="/unit/5">
-        <div className="unit flex">
-          <Unit5Img />
-        </div>
-      </a>
-      <div className="mobile-br"></div>
-      <a href="/unit/6">
-        <div className="unit flex">
-          <Unit6Img />
-        </div>
-      </a>
+      <div className="unit-buttons flex">
+        <a href="/unit/1">
+          <div className="unit flex">
+            <Unit1Img />
+          </div>
+        </a>
+        <div className="mobile-br"></div>
+        <a href="/unit/2">
+          <div className="unit unit2 flex">
+            <Unit2Img />
+          </div>
+        </a>
+        <div className="mobile-br"></div>
+        <a href="/unit/3">
+          <div className="unit flex">
+            <Unit3Img />
+          </div>
+        </a>
+        <div className="comp-br"></div>
+        <a href="/unit/4">
+          <div className="unit flex">
+            <Unit4Img />
+          </div>
+        </a>
+        <div className="mobile-br"></div>
+        <a href="/unit/5">
+          <div className="unit flex">
+            <Unit5Img />
+          </div>
+        </a>
+        <div className="mobile-br"></div>
+        <a href="/unit/6">
+          <div className="unit flex">
+            <Unit6Img />
+          </div>
+        </a>
+      </div>
     </div>
   );
 }

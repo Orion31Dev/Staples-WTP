@@ -19,7 +19,6 @@ interface UnitProps {
 enum UnitTab {
   NONE,
   QUESTIONS,
-  PEOPLE
 }
 
 interface UnitState {
@@ -50,7 +49,10 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
         >
           Unit {this.props.match.params.unitNumber}
         </div>
-        <div className="tabs flex">{this.Tabs()}</div>
+        <div className="tabs flex">
+          {this.Tabs()}
+          <a href={this.state.unitData.gDrive}><div className="tab">Google Drive</div></a>
+        </div>
         {this.state.tabIndex === UnitTab.QUESTIONS && <UnitQuestions unitData={this.state.unitData} />}
       </div>
     );
@@ -78,7 +80,7 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
           console.log(this.state.tabIndex, UnitTab.QUESTIONS, this.state.tabIndex === UnitTab.QUESTIONS);
         }}
       >
-        {name.toString().charAt(0) + name.toString().slice(1)}
+        {name.toString().charAt(0) + name.toString().toLowerCase().slice(1)}
       </div>
     );
   }

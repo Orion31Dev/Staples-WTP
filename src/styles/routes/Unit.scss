@@ -2,7 +2,6 @@
 
 .unit {
   z-index: 2;
-  overflow: auto;
 
   .img-wrapper {
     width: 100%;
@@ -23,14 +22,6 @@
   }
 
   .title {
-    width: 100%;
-    font-size: 3.5em;
-    text-align: center;
-
-    margin: 2vmin 0 0;
-
-    font-weight: $font-weight-bold;
-
     cursor: pointer;
   }
 

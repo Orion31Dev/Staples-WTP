@@ -67,9 +67,18 @@ a:visited {
 .section {
   width: 100%;
   min-height: 91%;
+  overflow: auto;
 
   @media screen and (max-width: $breakpoint-mobile) {
     margin-bottom: 5vmin;
+  }
+
+  .title {
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+    font-weight: $font-weight-bold;
+    margin: .6em 0 .4em;
   }
 }
 
