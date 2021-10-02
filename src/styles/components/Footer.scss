@@ -4,6 +4,8 @@
   background: $gray-1;
   color: $white;
 
+  position: relative;
+
   @media screen and (max-width: $breakpoint-mobile) {
     .credits {
       font-size: 4vw !important;
@@ -88,10 +90,10 @@
     position: absolute;
 
     left: 7%;
-    bottom: -35vw;
+    bottom: -23vw;
 
     @media screen and (max-width: $breakpoint-mobile) {
-      bottom: -78vw;
+      bottom: -63vw;
       left: 0;
       right: 0;
       text-align: center;
