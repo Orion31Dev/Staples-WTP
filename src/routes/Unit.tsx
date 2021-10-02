@@ -1,5 +1,5 @@
 import React from 'react';
-import unitDataJson from './unit/unit_data.json';
+import unitDataJson from '../components/unit/unit_data.json';
 import '../styles/routes/Unit.scss';
 
 // Sad :(
@@ -9,8 +9,9 @@ import { ReactComponent as Unit3Img } from '../images/unit3.svg';
 import { ReactComponent as Unit4Img } from '../images/unit4.svg';
 import { ReactComponent as Unit5Img } from '../images/unit5.svg';
 import { ReactComponent as Unit6Img } from '../images/unit6.svg';
-import { IUnitData, IUnit } from './unit/UnitData';
-import UnitQuestions from './unit/UnitQuestions';
+import { IUnitData, IUnit } from '../components/unit/UnitData';
+import UnitQuestions from '../components/unit/UnitQuestions';
+import UnitVideos from '../components/unit/UnitVideos';
 
 interface UnitProps {
   match: any;
@@ -19,6 +20,7 @@ interface UnitProps {
 enum UnitTab {
   NONE,
   QUESTIONS,
+  VIDEOS,
 }
 
 interface UnitState {
@@ -51,9 +53,12 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
         </div>
         <div className="tabs flex">
           {this.Tabs()}
-          <a href={this.state.unitData.gDrive}><div className="tab">Google Drive</div></a>
+          <a href={this.state.unitData.gDrive}>
+            <div className="tab">Google Drive</div>
+          </a>
         </div>
         {this.state.tabIndex === UnitTab.QUESTIONS && <UnitQuestions unitData={this.state.unitData} />}
+        {this.state.tabIndex === UnitTab.VIDEOS && <UnitVideos unitData={this.state.unitData} />}
       </div>
     );
   }

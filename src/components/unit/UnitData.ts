@@ -11,9 +11,15 @@ export interface IUnit {
   topic: string;
   gDrive: string;
   questions: IQuestions[];
+  videos: IVideo[]
 }
 
 export interface IQuestions {
   main: string;
   sub: string[];
+}
+
+export interface IVideo {
+  title: string;
+  link: string;
 }
