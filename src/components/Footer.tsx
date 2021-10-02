@@ -16,7 +16,7 @@ export default function Footer() {
 
   function updateTime() {
     // Time until January 22, 2022
-    const then = new Date('January 21, 2022 18:41:20').getTime();
+    const then = new Date('January 22, 2022 00:00:00').getTime();
     const now = new Date().getTime();
     const diff = then - now;
 
