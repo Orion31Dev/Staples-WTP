@@ -38,9 +38,12 @@ export default function Footer() {
   useEffect(() => {
     setTimeout(() => {
       if (pastSecs.includes(seconds)) return;
-      setPastSecs([...pastSecs, seconds]);
 
-      console.log(seconds);
+      if (seconds === '30') setPastSecs(['30']);
+      else if (seconds === '20') setPastSecs([...pastSecs.filter((s) => s !== '30'), '20']);
+      else setPastSecs([...pastSecs, seconds]);
+
+      console.log(seconds, pastSecs);
 
       setCol3Slide(true);
       if (seconds === '00') {
@@ -51,9 +54,6 @@ export default function Footer() {
           if (hours === '00') setCol0Slide(true);
         }
       }
-
-      if (seconds === '30') setPastSecs(['30']);
-      if (seconds === '20') setPastSecs(pastSecs.filter(s => s !== '30'));
 
       setTimeout(() => {
         setCol0Slide(false);
