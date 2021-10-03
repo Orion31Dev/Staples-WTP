@@ -82,7 +82,6 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
         className={'tab' + (this.state.tabIndex === tab ? ' active' : '')}
         onClick={() => {
           this.setState({ tabIndex: tab });
-          console.log(this.state.tabIndex, UnitTab.QUESTIONS, this.state.tabIndex === UnitTab.QUESTIONS);
         }}
       >
         {name.toString().charAt(0) + name.toString().toLowerCase().slice(1)}

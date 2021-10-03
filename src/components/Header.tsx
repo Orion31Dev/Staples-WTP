@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthButton from '../oauth/AuthButton';
 import '../styles/components/Header.scss';
 
 export default function Header() {
@@ -8,10 +9,15 @@ export default function Header() {
         <div className="title">SHS We The People</div>
       </a>
       <div className="links">
-        <a className="styled" href="/">Home</a>
+        <a className="styled" href="/">
+          Home
+        </a>
         <div className="sep">|</div>
-        <a className="styled" href="/units">Units</a>
+        <a className="styled" href="/units">
+          Units
+        </a>
       </div>
+      <AuthButton />
     </div>
   );
 }

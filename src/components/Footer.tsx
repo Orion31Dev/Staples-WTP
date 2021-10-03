@@ -43,8 +43,6 @@ export default function Footer() {
       else if (seconds === '20') setPastSecs([...pastSecs.filter((s) => s !== '30'), '20']);
       else setPastSecs([...pastSecs, seconds]);
 
-      console.log(seconds, pastSecs);
-
       setCol3Slide(true);
       if (seconds === '00') {
         setCol2Slide(true);
