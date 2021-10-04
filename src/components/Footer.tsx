@@ -16,7 +16,10 @@ export default function Footer() {
 
   function updateTime() {
     // Time until January 22, 2022
-    const then = new Date('January 22, 2022 00:00:00').getTime();
+    const then = window.location.href.includes('unit/3')
+      ? new Date('December 14, 2021 00:00:00').getTime() // (secret easter egg shhhh dont tell anyone)
+      : new Date('January 22, 2022 00:00:00').getTime();
+
     const now = new Date().getTime();
     const diff = then - now;
 
@@ -73,7 +76,7 @@ export default function Footer() {
       }
       <div className="clock">
         <div className={'col0 col' + (col0slide ? ' slide' : '')}>
-          <div className="days">{subtractFromString(days, 1, true)}</div>
+          <div className="days">{subtractFromString(days, 1, true, true, true)}</div>
           <div className="days">{days}</div>
           <div className="days e">&nbsp;</div>
           <div className="days e">&nbsp;</div>
@@ -101,14 +104,14 @@ export default function Footer() {
           <div className="seconds e">&nbsp;</div>
         </div>
       </div>
-      <div className="msg">The competition approaches...</div>
+      <div className="msg">{window.location.href.includes('unit/3') ? 'Time until my iPhone lol' : 'The competition approaches...'}</div>
       <div className="clock w">
         <div className={'col0 col' + (col0slide ? ' slide' : '')}>
-          <div className="days">{subtractFromString(days, 1, true)}</div>
+          <div className="days">{subtractFromString(days, 1, true, true, true)}</div>
           <div className="days">{days}</div>
-          <div className="days">{subtractFromString(days, -1, true)}</div>
-          <div className="days">{subtractFromString(days, -2, true)}</div>
-          <div className="days">{subtractFromString(days, -3, true)}</div>
+          <div className="days">{subtractFromString(days, -1, true, true, true)}</div>
+          <div className="days">{subtractFromString(days, -2, true, true, true)}</div>
+          <div className="days">{subtractFromString(days, -3, true, true, true)}</div>
         </div>
         <div className={'col1 col' + (col1slide ? ' slide' : '')}>
           <div className="hours">{subtractFromString(hours, 3, false, false)}</div>
@@ -136,7 +139,7 @@ export default function Footer() {
   );
 }
 
-function subtractFromString(str: string, sub: number, allow60 = false, allow24 = true) {
+function subtractFromString(str: string, sub: number, allow60 = false, allow24 = true, days = false) {
   let num = parseInt(str);
 
   num = num - sub;
@@ -149,5 +152,5 @@ function subtractFromString(str: string, sub: number, allow60 = false, allow24 =
     if (num >= 60 && !allow60) num -= 60;
   }
 
-  return num.toString().padStart(2, '0');
+  return num.toString().padStart(days ? 3 : 2, '0');
 }
