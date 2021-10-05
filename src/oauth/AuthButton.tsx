@@ -31,7 +31,7 @@ export default function AuthButton() {
   }, []);
 
   return (
-    <div className="login">
+    <div className="login button">
       {!loggedIn ? (
         <GoogleLogin
           clientId={clientId || ''}

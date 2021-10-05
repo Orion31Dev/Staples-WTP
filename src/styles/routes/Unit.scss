@@ -24,27 +24,4 @@
   .title {
     cursor: pointer;
   }
-
-  .tabs {
-    .tab {
-      border: 0.05em solid $white;
-      display: inline-block;
-      margin: 0 0.5em;
-
-      font-size: 1em;
-      padding: 0.5em 1em;
-
-      cursor: pointer;
-
-      &.active {
-        background: $white;
-        color: $bkg-color;
-      }
-
-      &:hover {
-        background: white;
-        color: $bkg-color;
-      }
-    }
-  }
 }

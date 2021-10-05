@@ -12,6 +12,7 @@ import { ReactComponent as Unit6Img } from '../images/unit6.svg';
 import { IUnitData, IUnit } from '../components/unit/UnitData';
 import UnitQuestions from '../components/unit/UnitQuestions';
 import UnitVideos from '../components/unit/UnitVideos';
+import Tabs from '../components/Tabs';
 
 interface UnitProps {
   match: any;
@@ -52,39 +53,13 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
           Unit {this.props.match.params.unitNumber}
         </div>
         <div className="tabs flex">
-          {this.Tabs()}
+          {Tabs(Object.keys(UnitTab), this.state.tabIndex, (tab: number) => this.setState.bind(this)({ tabIndex: tab }))}
           <a href={this.state.unitData.gDrive}>
             <div className="tab">Google Drive</div>
           </a>
         </div>
         {this.state.tabIndex === UnitTab.QUESTIONS && <UnitQuestions unitData={this.state.unitData} />}
         {this.state.tabIndex === UnitTab.VIDEOS && <UnitVideos unitData={this.state.unitData} />}
-      </div>
-    );
-  }
-
-  private Tabs() {
-    let arr = [];
-
-    for (let i = 1; i < Object.keys(UnitTab).length / 2; i++) {
-      arr.push(this.Tab(i));
-    }
-
-    return arr;
-  }
-
-  private Tab(tab: number) {
-    let name = Object.keys(UnitTab)[tab + Object.keys(UnitTab).length / 2];
-
-    return (
-      <div
-        key={tab.toString()}
-        className={'tab' + (this.state.tabIndex === tab ? ' active' : '')}
-        onClick={() => {
-          this.setState({ tabIndex: tab });
-        }}
-      >
-        {name.toString().charAt(0) + name.toString().toLowerCase().slice(1)}
       </div>
     );
   }

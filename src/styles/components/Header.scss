@@ -51,19 +51,6 @@ $horiz-margin: 7vmin;
   }
 
   .login {
-    padding: 0.3em 0.5em;
-    border: 0.3vmin solid $white;
-    border-radius: 1em;
-
-    cursor: pointer;
-
-    &:hover {
-      background: $white;
-      color: $gray-2;
-    }
-
-    font-size: 0.8em;
-
     position: absolute;
     right: $horiz-margin;
   }

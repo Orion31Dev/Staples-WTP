@@ -26,7 +26,7 @@ $font-weight-normal: 400;
 $font-weight-light: 300;
 $font-weight-thin: 100;
 
-$breakpoint-mobile: 640px;
+$breakpoint-mobile: 900px;
 
 $default-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, opacity 0.4s ease-in-out, border 0.2s ease-in-out;
 
@@ -39,11 +39,12 @@ body,
 
   font-size: 16px;
 }
+
 body {
   background-color: $bkg-color;
 }
 
-*:not(body) {
+*:not(body), input {
   color: $white;
   font-family: 'Roboto', sans-serif;
   font-weight: $font-weight-normal;
@@ -64,6 +65,7 @@ a:visited {
     }
   }
 }
+
 .section {
   width: 100%;
   min-height: 91%;
@@ -78,8 +80,51 @@ a:visited {
     font-size: 3em;
     text-align: center;
     font-weight: $font-weight-bold;
-    margin: .6em 0 .4em;
+    margin: 0.6em 0 0.4em;
   }
+
+  .section-header {
+    text-align: center;
+    font-weight: $font-weight-medium;
+    margin: 0.6em 0 0;
+    font-size: 2em;
+  }
+}
+
+.input-wrapper {
+  margin: 0.6em 0 0.4em;
+
+  input {
+    background: none;
+    outline: none;
+
+    font-weight: $font-weight-bold;
+    font-size: 1em; 
+
+    width: 70%;
+
+    border: none;
+    border-bottom: .1em solid $gray-3;
+
+    &:focus {
+      border-color: $white;
+    }
+  }
+}
+
+.button {
+  padding: 0.3em 0.5em;
+  border: 0.3vmin solid $white;
+  border-radius: 1em;
+
+  cursor: pointer;
+
+  &:hover {
+    background: $white;
+    color: $gray-2;
+  }
+
+  font-size: 0.8em;
 }
 
 .flex {

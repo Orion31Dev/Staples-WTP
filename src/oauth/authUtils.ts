@@ -7,7 +7,6 @@ const cookies = new Cookies();
 
 export function refreshTokenSetup(res: any) {
   let refreshTime = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
-  console.log(res);
 
   async function refreshToken() {
     const newAuthRes = await res.reloadAuthResponse();

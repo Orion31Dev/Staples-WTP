@@ -1,0 +1,44 @@
+@import '../style.scss';
+
+.email-list {
+  display: block;
+
+  font-size: 1.5em;
+
+  text-align: center;
+
+  width: 50%;
+  margin: .5em auto;
+
+  .email {
+    &:nth-of-type(odd) {
+      background: $gray-2;
+    }
+
+    &:nth-of-type(even) {
+      background: $gray-1;
+    }
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: line-through;
+
+      background: mix($red, $gray-2, 20%)
+    }
+
+    padding: .3em;
+  }
+
+  .input-wrapper {
+    input,
+    div {
+      display: inline-block;
+    }
+
+    .button {
+      margin: 0 1em;
+      padding-left: .8em;
+      padding-right: .8em;
+    }
+  }
+}

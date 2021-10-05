@@ -1,0 +1,34 @@
+@import '../style.scss';
+
+.no-access {
+  .sub {
+    text-align: center;
+    font-size: 1.5em;
+  }
+}
+
+.admin {
+  div:not(.no-access) {
+    .title {
+      cursor: pointer;
+    }
+  }
+
+  .tabs.unit {
+    margin-top: 1.5vmin;
+    $alt-color: $cyan;
+
+    .tab {
+      border-color: $alt-color !important;
+
+      &:hover {
+        background: $alt-color !important;
+      }
+
+      &.active {
+        color: $bkg-color !important;
+        background: $alt-color !important;
+      }
+    }
+  }
+}
