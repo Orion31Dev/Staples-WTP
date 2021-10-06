@@ -28,8 +28,8 @@ $horiz-margin: 7vmin;
 
     .login {
       position: static !important;
-      font-size: .6em !important;
-      margin: .3em auto;
+      font-size: 0.6em !important;
+      margin: 0.3em auto;
     }
 
     height: 4.4em;
@@ -53,5 +53,9 @@ $horiz-margin: 7vmin;
   .login {
     position: absolute;
     right: $horiz-margin;
+
+    &:hover div {
+      color: $gray-2;
+    }
   }
 }
