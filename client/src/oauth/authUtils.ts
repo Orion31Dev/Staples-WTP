@@ -28,17 +28,14 @@ export function getAccessToken() {
 
 export async function getUserInfo() {
   try {
-    return (
-      console.log(await client.verifyIdToken({
-        idToken: getAccessToken(),
-        audience: process.env.REACT_APP_CLIENT_ID,
-      })
-    ).getPayload())
+    let e = (
       await client.verifyIdToken({
         idToken: getAccessToken(),
         audience: process.env.REACT_APP_CLIENT_ID,
       })
     ).getPayload();
+    console.log(e);
+    return e;
   } catch (err) {
     return null;
   }
