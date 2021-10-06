@@ -29,6 +29,11 @@ export function getAccessToken() {
 export async function getUserInfo() {
   try {
     return (
+      console.log(await client.verifyIdToken({
+        idToken: getAccessToken(),
+        audience: process.env.REACT_APP_CLIENT_ID,
+      })
+    ).getPayload())
       await client.verifyIdToken({
         idToken: getAccessToken(),
         audience: process.env.REACT_APP_CLIENT_ID,
