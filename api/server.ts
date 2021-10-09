@@ -5,8 +5,6 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-console.log(process.env.CLOUDANT_URL);
-
 const Cloudant = require('@cloudant/cloudant');
 const cloudant = new Cloudant({ url: process.env.CLOUDANT_URL, plugins: { iamauth: { iamApiKey: process.env.CLOUDANT_API_KEY } } });
 
