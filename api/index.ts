@@ -13,7 +13,7 @@ const db = cloudant.use('wtp');
 const app = express();
 app.use(express.json());
 
-app.get('/unit-data', async (req, res) => {
+app.get('/api/unit-data', async (req, res) => {
   res.json(await db.get('unit_data'));
 });
 
