@@ -34,7 +34,6 @@ export async function getUserInfo() {
         audience: process.env.REACT_APP_CLIENT_ID,
       })
     ).getPayload();
-    console.log(e);
     return e;
   } catch (err) {
     return null;

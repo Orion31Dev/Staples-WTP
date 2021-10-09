@@ -16,6 +16,6 @@
     "ts-node": "^10.2.1"
   },
   "scripts": {
-    "start": "nodemon server.ts"
+    "start": "nodemon index.ts"
   }
 }

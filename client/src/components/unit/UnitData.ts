@@ -11,7 +11,7 @@ export interface IUnit {
   topic: string;
   gDrive: string;
   questions: IQuestions[];
-  videos: IVideo[]
+  videos: IVideo[];
 }
 
 export interface IQuestions {
@@ -22,4 +22,11 @@ export interface IQuestions {
 export interface IVideo {
   title: string;
   link: string;
+}
+
+export async function getUnitData() {
+  let data = await fetch('http://localhost:3001/api/unit-data');
+  // let data = await fetch('https://shs-wtp.vercel.app/api/unit-data').then(res => res.json());
+
+  return await data.json();
 }

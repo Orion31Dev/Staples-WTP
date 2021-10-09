@@ -1,5 +1,4 @@
 import React from 'react';
-import unitDataJson from '../components/unit/unit_data.json';
 import '../styles/routes/Unit.scss';
 
 // Sad :(
@@ -9,7 +8,7 @@ import { ReactComponent as Unit3Img } from '../images/unit3.svg';
 import { ReactComponent as Unit4Img } from '../images/unit4.svg';
 import { ReactComponent as Unit5Img } from '../images/unit5.svg';
 import { ReactComponent as Unit6Img } from '../images/unit6.svg';
-import { IUnitData, IUnit } from '../components/unit/UnitData';
+import { IUnitData, IUnit, getUnitData } from '../components/unit/UnitData';
 import UnitQuestions from '../components/unit/UnitQuestions';
 import UnitVideos from '../components/unit/UnitVideos';
 import Tabs from '../components/Tabs';
@@ -32,11 +31,19 @@ interface UnitState {
 export default class Unit extends React.Component<UnitProps, UnitState> {
   constructor(props: UnitProps) {
     super(props);
-    let key = this.props.match.params.unitNumber.toString() as keyof IUnitData;
+
     this.state = {
-      unitData: unitDataJson[key],
+      unitData: {} as IUnit,
       tabIndex: UnitTab.NONE,
     };
+  }
+
+  componentDidMount() {
+    let key = this.props.match.params.unitNumber.toString() as keyof IUnitData;
+
+    getUnitData().then((json) => {
+      this.setState({ unitData: json[key], tabIndex: UnitTab.QUESTIONS });
+    });
   }
 
   render() {

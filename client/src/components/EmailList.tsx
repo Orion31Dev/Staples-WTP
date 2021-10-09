@@ -3,7 +3,6 @@ import '../styles/components/EmailList.scss';
 
 export default function EmailList(props: { list: string[]; setList: (list: string[]) => void }) {
   const [inputVal, setInputVal] = React.useState('');
-  console.log(props.list);
 
   function addEmail() {
     if (inputVal.length > 0) {

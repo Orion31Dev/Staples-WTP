@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
 import EmailList from '../EmailList';
-import unitData from '../unit/unit_data.json';
+import { getUnitData } from '../unit/UnitData';
 
 export default function UnitSettings(props: { unitNum: string }) {
-  const [emails, setEmails] = React.useState(unitData[props.unitNum as keyof typeof unitData].members as string[] || ([] as string[]));
+  const [emails, setEmails] = React.useState([] as string[]);
 
   useEffect(() => {
-    setEmails(unitData[props.unitNum as keyof typeof unitData].members as string[] || ([] as string[]));
+    async function fetchData() {
+      let data = await getUnitData();
+      setEmails(data[props.unitNum].members);
+    }
+
+    fetchData();
   }, [props.unitNum]);
 
-  console.log(unitData[props.unitNum as keyof typeof unitData].members, emails);
+  // useEffect(() => {
+  //   setEmails((unitData[props.unitNum as keyof typeof unitData].members as string[]) || ([] as string[]));
+  // }, [props.unitNum]);
 
   return (
     <div className="unit-settings">

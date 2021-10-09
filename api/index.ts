@@ -14,9 +14,10 @@ const app = express();
 app.use(express.json());
 
 app.get('/api/unit-data', async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.json(await db.get('unit_data'));
 });
 
 module.exports = app;
 
-//app.listen(process.env.PORT || 3001);
+if (process.env.NODE_ENV !== 'production') app.listen(process.env.PORT || 3001);
