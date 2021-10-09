@@ -10,11 +10,11 @@ const cloudant = new Cloudant({ url: process.env.CLOUDANT_URL, plugins: { iamaut
 
 const db = cloudant.use('wtp');
 
-const app = express();
+export const app = express();
 app.use(express.json());
 
 app.get('/unit-data', async (req, res) => {
   res.json(await db.get('unit_data'));
 });
 
-app.listen(process.env.PORT || 3001);
+//app.listen(process.env.PORT || 3001);
