@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/api/unit-data', async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  if (process.env.NODE_ENV !== 'production') res.setHeader('Access-Control-Allow-Origin', '*');
   res.json(await db.get('unit_data'));
 });
 
