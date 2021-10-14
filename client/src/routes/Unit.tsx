@@ -2,8 +2,6 @@ import React from 'react';
 import '../styles/routes/Unit.scss';
 import { IUnit, IUnitData } from 'wtp-shared';
 
-import Confetti from 'react-confetti'
-
 // Sad :(
 import { ReactComponent as Unit1Img } from '../images/unit1.svg';
 import { ReactComponent as Unit2Img } from '../images/unit2.svg';
@@ -15,6 +13,8 @@ import { getUnitData } from '../components/unit/UnitData';
 import UnitQuestions from '../components/unit/UnitQuestions';
 import UnitVideos from '../components/unit/UnitVideos';
 import Tabs from '../components/Tabs';
+
+import Confetti from 'react-confetti';
 
 interface UnitProps {
   match: any;
@@ -52,7 +52,36 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
   render() {
     return (
       <div className="unit section">
-        {this.props.match.params.unitNumber === '3' && <Confetti numberOfPieces={500} recycle={false} confettiSource={{x: 0, y: -10, w: window.innerWidth, h: 0}}	/>}
+        {this.props.match.params.unitNumber === '3' && (
+          <Confetti
+            numberOfPieces={500}
+            recycle={false}
+            confettiSource={{ x: 0, y: -30, w: window.innerWidth, h: 20 }}
+            colors={
+              Date.now() % 2
+                ? ['#ffffff', '#333399']
+                : [
+                    '#f44336',
+                    '#e91e63',
+                    '#9c27b0',
+                    '#673ab7',
+                    '#3f51b5',
+                    '#2196f3',
+                    '#03a9f4',
+                    '#00bcd4',
+                    '#009688',
+                    '#4CAF50',
+                    '#8BC34A',
+                    '#CDDC39',
+                    '#FFEB3B',
+                    '#FFC107',
+                    '#FF9800',
+                    '#FF5722',
+                    '#795548',
+                  ]
+            }
+          />
+        )}
         <div className="img-wrapper flex">{UnitImage(this.props.match.params.unitNumber)}</div>
         <div
           className="title"
