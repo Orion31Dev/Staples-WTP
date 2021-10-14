@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/routes/Unit.scss';
 import { IUnit, IUnitData } from 'wtp-shared';
 
+import Confetti from 'react-confetti'
+
 // Sad :(
 import { ReactComponent as Unit1Img } from '../images/unit1.svg';
 import { ReactComponent as Unit2Img } from '../images/unit2.svg';
@@ -50,7 +52,7 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
   render() {
     return (
       <div className="unit section">
-        <div></div>
+        {this.props.match.params.unitNumber === '3' && <Confetti numberOfPieces={500} recycle={false} confettiSource={{x: 0, y: -10, w: window.innerWidth, h: 0}}	/>}
         <div className="img-wrapper flex">{UnitImage(this.props.match.params.unitNumber)}</div>
         <div
           className="title"
