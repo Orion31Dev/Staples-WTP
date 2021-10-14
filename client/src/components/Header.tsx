@@ -6,8 +6,12 @@ import '../styles/components/Header.scss';
 export default function Header() {
   let [isAdmin, setIsAdmin] = useState(false);
 
-  useEffect(() => {
+  function updateAdmin() {
     hasAdminAccess().then(setIsAdmin);
+  }
+
+  useEffect(() => {
+    updateAdmin();
   }, []);
 
   return (
@@ -30,7 +34,7 @@ export default function Header() {
           </a>
         )}
       </div>
-      <AuthButton />
+      <AuthButton onSuccess={updateAdmin} />
     </div>
   );
 }

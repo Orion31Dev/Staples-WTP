@@ -1,4 +1,4 @@
-import { IUnit } from './UnitData';
+import { IUnit } from 'wtp-shared';
 import '../../styles/components/unit/UnitQuestions.scss';
 
 export default function UnitQuestions(props: { unitData: IUnit }) {

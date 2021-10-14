@@ -1,27 +1,68 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { IUnitUpdateData } from '../../../../shared/UnitInterfaces';
+import { getAccessToken } from '../../oauth/authUtils';
 import EmailList from '../EmailList';
 import { getUnitData } from '../unit/UnitData';
 
-export default function UnitSettings(props: { unitNum: string }) {
-  const [emails, setEmails] = React.useState([] as string[]);
+interface UnitSettingsProps {
+  unitNum: string;
+}
 
-  useEffect(() => {
-    async function fetchData() {
-      let data = await getUnitData();
-      setEmails(data[props.unitNum].members);
+interface UnitSettingsState {
+  emails: string[];
+}
+
+export default class UnitSettings extends React.Component<UnitSettingsProps, UnitSettingsState> {
+  constructor(props: UnitSettingsProps) {
+    super(props);
+
+    this.state = {
+      emails: [],
+    };
+  }
+
+  async componentDidMount() {
+    this.setState({ emails: (await getUnitData())[this.props.unitNum].members });
+  }
+
+  async componentDidUpdate(prevProps: UnitSettingsProps, prevState: UnitSettingsState) {
+    if (this.props.unitNum !== prevProps.unitNum) {
+      console.log('e');
+      this.setState({ emails: (await getUnitData())[this.props.unitNum].members });
     }
 
-    fetchData();
-  }, [props.unitNum]);
+    if (this.state !== prevState && this.props.unitNum === prevProps.unitNum) {
+      let data = {} as IUnitUpdateData;
 
-  // useEffect(() => {
-  //   setEmails((unitData[props.unitNum as keyof typeof unitData].members as string[]) || ([] as string[]));
-  // }, [props.unitNum]);
+      data.unitId = parseInt(this.props.unitNum);
+      data.members = this.state.emails;
 
-  return (
-    <div className="unit-settings">
-      <div className="section-header">Members</div>
-      <EmailList list={emails} setList={setEmails}></EmailList>
-    </div>
-  );
+      try {
+        fetch('/api/update-units', {
+          method: 'POST',
+          body: JSON.stringify({
+            data: data,
+            token: getAccessToken(),
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+      } catch {}
+    }
+  }
+
+  render() {
+    return (
+      <div className="unit-settings">
+        <div className="section-header">Members</div>
+        <EmailList
+          list={this.state.emails}
+          setList={(emails) => {
+            this.setState({ emails: emails });
+          }}
+        ></EmailList>
+      </div>
+    );
+  }
 }

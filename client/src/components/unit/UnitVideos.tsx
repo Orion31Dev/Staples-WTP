@@ -1,6 +1,7 @@
 import React from "react";
+import { IUnit, IVideo } from "wtp-shared";
+
 import "../../styles/components/unit/UnitVideos.scss";
-import { IUnit, IVideo } from "./UnitData";
 
 export default function UnitVideos(props: { unitData: IUnit }) {
   return (

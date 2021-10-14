@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/routes/Unit.scss';
+import { IUnit, IUnitData } from 'wtp-shared';
 
 // Sad :(
 import { ReactComponent as Unit1Img } from '../images/unit1.svg';
@@ -8,7 +9,7 @@ import { ReactComponent as Unit3Img } from '../images/unit3.svg';
 import { ReactComponent as Unit4Img } from '../images/unit4.svg';
 import { ReactComponent as Unit5Img } from '../images/unit5.svg';
 import { ReactComponent as Unit6Img } from '../images/unit6.svg';
-import { IUnitData, IUnit, getUnitData } from '../components/unit/UnitData';
+import { getUnitData } from '../components/unit/UnitData';
 import UnitQuestions from '../components/unit/UnitQuestions';
 import UnitVideos from '../components/unit/UnitVideos';
 import Tabs from '../components/Tabs';
@@ -60,7 +61,9 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
           Unit {this.props.match.params.unitNumber}
         </div>
         <div className="tabs flex">
-          {Tabs(Object.keys(UnitTab), this.state.tabIndex, (tab: number) => this.setState.bind(this)({ tabIndex: tab }))}
+          {Tabs(Object.keys(UnitTab), this.state.tabIndex, (tab: number) => {
+            if (this.state.unitData.topic) this.setState.bind(this)({ tabIndex: tab });
+          })}
           <a href={this.state.unitData.gDrive}>
             <div className="tab">Google Drive</div>
           </a>

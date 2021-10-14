@@ -3,7 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import { getUserInfo, refreshTokenSetup, setAccessToken } from './authUtils';
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
-export default function AuthButton() {
+export default function AuthButton( props: { onSuccess?: Function }) {
   let [loggedIn, setLoggedIn] = useState(false);
   let [userName, setUserName] = useState('');
 
@@ -15,6 +15,8 @@ export default function AuthButton() {
       setLoggedIn(true);
       setUserName(user.name);
     });
+
+    props.onSuccess?.();
   }
 
   function onFailure(res: any) {

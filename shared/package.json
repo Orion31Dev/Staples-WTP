@@ -1,0 +1,7 @@
+{
+  "name": "wtp-shared",
+  "version": "1.0.0",
+  "main": "UnitInterfaces.ts",
+  "license": "MIT",
+  "author": "Ryan Salik"
+}
