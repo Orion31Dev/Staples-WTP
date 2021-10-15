@@ -19,7 +19,7 @@ export default function Home() {
     <div className="home section flex">
       <AnimatedLogo className={'logo' + (logoFade ? ' fade' : '')} />
       <div className={'h-title' + (showTitle ? ' fade' : '')}>
-        <span>STAPLES</span> WE THE PEOPLE
+        <span>Staples</span> We The People
       </div>
       <div className={'links' + (showTitle ? ' fade' : '')}>
         <a href="/units" className="link">

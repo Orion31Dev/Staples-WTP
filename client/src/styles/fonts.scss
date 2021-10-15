@@ -87,3 +87,17 @@
   font-weight: 100;
   font-style: italic;
 }
+
+// Quarto Black
+@font-face {
+  font-family: 'Quarto';
+  src: url('../fonts/Quarto Black.otf') format('opentype');
+  font-weight: 900;
+}
+
+// Quarto Light
+@font-face {
+  font-family: 'Quarto';
+  src: url('../fonts/Quarto Medium.otf') format('opentype');
+  font-weight: 300;
+}

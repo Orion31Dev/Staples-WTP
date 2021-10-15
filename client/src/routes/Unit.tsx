@@ -95,9 +95,11 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
           {Tabs(Object.keys(UnitTab), this.state.tabIndex, (tab: number) => {
             if (this.state.unitData.topic) this.setState.bind(this)({ tabIndex: tab });
           })}
-          <a href={this.state.unitData.gDrive}>
-            <div className="tab">Google Drive</div>
-          </a>
+          {this.state.unitData.gDrive && (
+            <a href={this.state.unitData.gDrive}>
+              <div className="tab">Google Drive</div>
+            </a>
+          )}
         </div>
         {this.state.tabIndex === UnitTab.QUESTIONS && <UnitQuestions unitData={this.state.unitData} />}
         {this.state.tabIndex === UnitTab.VIDEOS && <UnitVideos unitData={this.state.unitData} />}
