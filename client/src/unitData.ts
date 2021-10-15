@@ -1,4 +1,4 @@
-import { getAccessToken } from '../../oauth/authUtils';
+import { getAccessToken } from './oauth/authUtils';
 
 export async function getUnitData() {
   let url;
@@ -32,7 +32,7 @@ export async function getUserUnit() {
   });
 
   try {
-    let json = await data.text();
+    let json = await (await data.text()).replaceAll('"', '');
     return json;
   } catch {
     return undefined;

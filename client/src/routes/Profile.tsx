@@ -1,6 +1,7 @@
 import { TokenPayload } from 'google-auth-library';
 import React from 'react';
 import Tabs from '../components/Tabs';
+import { getUserUnit } from '../unitData';
 import { getUserInfo } from '../oauth/authUtils';
 import '../styles/routes/Profile.scss';
 
@@ -16,6 +17,7 @@ enum ProfileTab {
 interface ProfileState {
   tabIndex: number;
   user?: TokenPayload | null;
+  userUnit?: any;
 }
 
 export default class Profile extends React.Component<ProfileProps, ProfileState> {
@@ -24,12 +26,13 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
     this.state = {
       tabIndex: ProfileTab.NONE,
       user: undefined,
+      userUnit: undefined,
     };
   }
 
   componentDidMount() {
-    getUserInfo().then((user) => {
-      this.setState({ user });
+    getUserInfo().then(async (user) => {
+      this.setState({ user, userUnit: await getUserUnit() });
     });
   }
 
@@ -46,6 +49,7 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
         >
           {this.state.user.name}'s Profile
         </div>
+        <div className="unit">{this.state.userUnit ? 'Unit ' + this.state.userUnit : 'You are not in a unit.'}</div>
         <div className="tabs flex">
           {Tabs(Object.keys(ProfileTab), this.state.tabIndex, (tab: number) => this.setState({ tabIndex: tab }))}
         </div>
