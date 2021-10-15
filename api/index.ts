@@ -54,7 +54,7 @@ async function getUserUnit(user: TokenPayload) {
   const unitData = (await db.get('unit_data')) as IUnitData;
 
   const unit = Object.keys(unitData).find((unit) => unitData[unit as keyof IUnitData].members?.includes(user.email as string));
-  return unit ? unit.replaceAll('"', '') : undefined;
+  return unit;
 }
 
 app.use((req, _, next) => {
