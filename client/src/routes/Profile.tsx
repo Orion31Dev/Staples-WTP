@@ -49,7 +49,7 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
         >
           {this.state.user.name}'s Profile
         </div>
-        <div className="unit">{this.state.userUnit ? 'Unit ' + this.state.userUnit : 'You are not in a unit.'}</div>
+        <div className="unit">{this.state.userUnit ? ('Unit ' + this.state.userUnit) : 'You are not in a unit.'}</div>
         <div className="tabs flex">
           {Tabs(Object.keys(ProfileTab), this.state.tabIndex, (tab: number) => this.setState({ tabIndex: tab }))}
         </div>
