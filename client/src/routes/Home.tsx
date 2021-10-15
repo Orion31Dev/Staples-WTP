@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ReactComponent as AnimatedLogo } from '../images/wtp-animated.svg';
+import AuthButton from '../oauth/AuthButton';
 import '../styles/components/Home.scss';
 
 export default function Home() {
@@ -26,9 +27,7 @@ export default function Home() {
           Units
         </a>
         <div className="sep">|</div>
-        <a href="/" className="link">
-          Log in [WIP]
-        </a>
+        <AuthButton styleAsLink={true} />
       </div>
     </div>
   );

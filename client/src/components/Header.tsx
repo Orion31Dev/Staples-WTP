@@ -34,7 +34,7 @@ export default function Header() {
           </a>
         )}
       </div>
-      <AuthButton onSuccess={updateAdmin} />
+      <AuthButton onSuccess={updateAdmin} styleAsLink={false} />
     </div>
   );
 }

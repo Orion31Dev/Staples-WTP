@@ -92,7 +92,9 @@
       display: inline-block;
     }
 
-    .link {
+    .link,
+    .link div {
+      cursor: pointer;
       color: $gray-5;
 
       &:hover {
