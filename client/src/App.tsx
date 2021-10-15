@@ -8,6 +8,7 @@ import Unit from './routes/Unit';
 import Footer from './components/Footer';
 import Admin from './routes/Admin';
 import Profile from './routes/Profile';
+import Page404 from './routes/Page404';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/unit/:unitNumber" component={Unit} />
-              <Route component={() => <h1>404</h1>} />
+              <Route component={Page404} />
             </Switch>
           </Route>
         </Switch>

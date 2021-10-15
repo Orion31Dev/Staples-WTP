@@ -1,0 +1,32 @@
+@import '../style';
+
+.pg404 {
+  position: relative;
+
+  .code {
+    font-size: 30vw;
+    font-weight: bold;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 5vw;
+
+    color: $gray-2;
+  }
+
+  .msg {
+    position: absolute;
+    text-align: center;
+
+    font-size: 4em;
+
+    font-weight: bold;
+    font-family: 'Quarto', 'Roboto', sans-serif;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
