@@ -1,0 +1,7 @@
+.profile {
+  &:not(.no-access) {
+    .title {
+      cursor: pointer;
+    }
+  }
+}

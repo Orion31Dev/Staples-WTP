@@ -27,7 +27,6 @@ export default class UnitSettings extends React.Component<UnitSettingsProps, Uni
 
   async componentDidUpdate(prevProps: UnitSettingsProps, prevState: UnitSettingsState) {
     if (this.props.unitNum !== prevProps.unitNum) {
-      console.log('e');
       this.setState({ emails: (await getUnitData())[this.props.unitNum].members });
     }
 
@@ -42,10 +41,10 @@ export default class UnitSettings extends React.Component<UnitSettingsProps, Uni
           method: 'POST',
           body: JSON.stringify({
             data: data,
-            token: getAccessToken(),
           }),
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${getAccessToken()}`,
           },
         });
       } catch {}

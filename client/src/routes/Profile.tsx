@@ -2,7 +2,7 @@ import { TokenPayload } from 'google-auth-library';
 import React from 'react';
 import Tabs from '../components/Tabs';
 import { getUserInfo } from '../oauth/authUtils';
-import '../styles/routes/Admin.scss';
+import '../styles/routes/Profile.scss';
 
 interface ProfileProps {
   match: any;
@@ -28,7 +28,7 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
   }
 
   componentDidMount() {
-    getUserInfo().then(user => {
+    getUserInfo().then((user) => {
       this.setState({ user });
     });
   }
@@ -37,14 +37,14 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
     if (!this.state.user) return this.NoAccessPage();
 
     return (
-      <div className="section admin">
+      <div className="section profile">
         <div
           className="title"
           onClick={() => {
             this.setState({ tabIndex: ProfileTab.NONE });
           }}
         >
-          
+          {this.state.user.name}'s Profile
         </div>
         <div className="tabs flex">
           {Tabs(Object.keys(ProfileTab), this.state.tabIndex, (tab: number) => this.setState({ tabIndex: tab }))}

@@ -76,7 +76,7 @@ app.get('/api/unit-data', async (req, res) => {
   let userUnit = req.user ? await getUserUnit(req.user) : undefined;
 
   for (let unit in json) {
-    if (userUnit === unit) continue;
+    if (userUnit === unit || process.env.ADMIN_SUB === req.user?.sub) continue;
     
     delete json[unit as keyof IUnitData].members;
     delete json[unit as keyof IUnitData].gDrive;

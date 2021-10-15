@@ -8,7 +8,7 @@
 }
 
 .admin {
-  div:not(.no-access) {
+  &:not(.no-access) {
     .title {
       cursor: pointer;
     }
