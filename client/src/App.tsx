@@ -7,6 +7,7 @@ import Units from './routes/Units';
 import Unit from './routes/Unit';
 import Footer from './components/Footer';
 import Admin from './routes/Admin';
+import Profile from './routes/Profile';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
             <Switch>
               <Route exact path="/units" component={Units} />
               <Route exact path="/admin" component={Admin} />
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/unit/:unitNumber" component={Unit} />
+              <Route component={() => <h1>404</h1>} />
             </Switch>
           </Route>
         </Switch>

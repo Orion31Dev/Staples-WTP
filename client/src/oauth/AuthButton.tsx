@@ -43,7 +43,7 @@ export default function AuthButton(props: { onSuccess?: Function; styleAsLink?: 
           cookiePolicy={'single_host_origin'}
         />
       ) : (
-        userName
+        <div onClick={() => {window.location.href = "/profile"}}>{userName}</div>
       )}
     </div>
   );
