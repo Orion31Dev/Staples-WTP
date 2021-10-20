@@ -31,4 +31,11 @@
       }
     }
   }
+
+  .calendar-wrapper {
+    transition: opacity .3s ease-in-out;
+    &.fade {
+      opacity: 0;
+    }
+  }
 }

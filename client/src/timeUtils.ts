@@ -8,16 +8,17 @@ export function getFirstDayInMonth(month: number) {
 }
 
 export function formatDate(date: Date) {
-  return `${monthNames[date.getMonth() - 1].substr(0, 3)}. ${date.getDate()}, ${date.getFullYear()}`;
+  console.log(date.getFullYear(), getFirstDayInMonth(date.getMonth()), date.getMonth());
+  return `${dayNames[date.getDay()]}, ${monthNames[date.getMonth()].substr(0, 3)}. ${date.getDate()}, ${date.getFullYear()}`;
 }
 
 export function formatHour(hour: number) {
-  let meridiam = (hour >= 12 && hour !== 24) ? "pm" : "am";
+  let meridiam = hour >= 12 && hour !== 24 ? 'pm' : 'am';
   if (hour > 12) {
     hour -= 12;
   }
 
-  return hour + " " + meridiam;
+  return hour + ' ' + meridiam;
 }
 
 export const monthNames = [
@@ -34,3 +35,5 @@ export const monthNames = [
   'November',
   'December',
 ];
+
+export const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

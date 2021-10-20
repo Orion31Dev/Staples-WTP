@@ -44,7 +44,7 @@ export default function Calendar(props: { onSelect: (date: Date) => void }) {
         <CalendarDay
           key={i}
           day={i + 1 - firstDayOfMonth}
-          date={new Date(now.getFullYear(), month + 1, i - firstDayOfMonth)}
+          date={new Date(now.getFullYear(), month, i - firstDayOfMonth + 1)}
           today={now.getDate() + firstDayOfMonth - 1 === i && month === now.getMonth()}
         />
       );

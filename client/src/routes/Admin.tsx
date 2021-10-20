@@ -22,6 +22,7 @@ interface AdminState {
   tabIndex: number;
   unitTabIndex: number;
   selectedDate?: Date;
+  calendarFade?: boolean;
   access: boolean;
 }
 
@@ -38,6 +39,13 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
 
   componentDidMount() {
     HasAdminAccess().then((a) => this.setState({ access: a }));
+  }
+
+  setSelectedDate(date: Date | undefined) {
+    this.setState({ calendarFade: true });
+    setTimeout(() => {
+      this.setState({ selectedDate: date, calendarFade: false });
+    }, 300);
   }
 
   render() {
@@ -64,12 +72,15 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
             <UnitSettings unitNum={UnitTab[this.state.unitTabIndex]} />
           </div>
         )}
-        {this.state.tabIndex === AdminTab.CALENDAR &&
-          (this.state.selectedDate ? (
-              <FreeTimes back={() => this.setState({selectedDate: undefined})} day={this.state.selectedDate} />
-          ) : (
-            <Calendar onSelect={(d) => this.setState({ selectedDate: d })} />
-          ))}
+        {this.state.tabIndex === AdminTab.CALENDAR && (
+          <div className={`calendar-wrapper ${this.state.calendarFade ? 'fade' : ''}`}>
+            {this.state.selectedDate ? (
+              <FreeTimes back={() => this.setSelectedDate(undefined)} day={this.state.selectedDate} />
+            ) : (
+              <Calendar onSelect={(d) => this.setSelectedDate(d)} />
+            )}
+          </div>
+        )}
       </div>
     );
   }
