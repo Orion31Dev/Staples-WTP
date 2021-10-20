@@ -1,5 +1,7 @@
 import React from 'react';
+import FreeTimes from '../components/admin/FreeTimes';
 import UnitSettings from '../components/admin/UnitSettings';
+import Calendar from '../components/Calendar';
 import Tabs from '../components/Tabs';
 import { getUserInfo } from '../oauth/authUtils';
 import '../styles/routes/Admin.scss';
@@ -11,7 +13,7 @@ interface AdminProps {
 enum AdminTab {
   NONE,
   UNITS,
-  VIDEOS,
+  CALENDAR,
 }
 
 const UnitTab = ['1', '2', '3', '4', '5', '6'];
@@ -19,6 +21,7 @@ const UnitTab = ['1', '2', '3', '4', '5', '6'];
 interface AdminState {
   tabIndex: number;
   unitTabIndex: number;
+  selectedDate?: Date;
   access: boolean;
 }
 
@@ -28,6 +31,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
     this.state = {
       tabIndex: AdminTab.NONE,
       unitTabIndex: 0,
+      selectedDate: undefined,
       access: false,
     };
   }
@@ -60,6 +64,12 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
             <UnitSettings unitNum={UnitTab[this.state.unitTabIndex]} />
           </div>
         )}
+        {this.state.tabIndex === AdminTab.CALENDAR &&
+          (this.state.selectedDate ? (
+              <FreeTimes back={() => this.setState({selectedDate: undefined})} day={this.state.selectedDate} />
+          ) : (
+            <Calendar onSelect={(d) => this.setState({ selectedDate: d })} />
+          ))}
       </div>
     );
   }

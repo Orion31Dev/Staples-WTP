@@ -10,7 +10,7 @@ interface ProfileProps {
 }
 
 enum ProfileTab {
-  NONE,
+  NONE, 
   UNIT,
 }
 

@@ -1,0 +1,86 @@
+@import '../style';
+
+.calendar-wrapper {
+  margin: 1.5em;
+
+  .month-wrapper {
+    text-align: center;
+    width: 100%;
+
+    font-size: 2.5em;
+
+    div {
+      display: inline-block;
+      margin: 0 0.2em;
+
+      &:not(.month) {
+        user-select: none;
+
+        font-weight: $font-weight-thin;
+
+        cursor: pointer;
+        margin-top: -0.1em;
+      }
+
+      &.month {
+        width: 5em;
+        font-family: $fonts-quarto;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+
+  .calendar,
+  .month {
+    transition: opacity 0.3s ease-in-out;
+
+    &.fade {
+      opacity: 0;
+    }
+  }
+
+  .calendar {
+    font-size: 1.75em;
+    border-spacing: 0.3em;
+
+    flex-wrap: wrap;
+
+    th {
+      font-weight: $font-weight-medium;
+      font-family: 'Quarto';
+    }
+
+    .day {
+      background: $gray-2;
+      width: 2.8em;
+      height: 2.8em;
+
+      border-radius: 20em;
+
+      text-align: center;
+      vertical-align: middle;
+
+      &:not(.empty) {
+        cursor: pointer;
+
+        &:hover {
+          background: $gray-5;
+          color: $bkg-color;
+
+          &.today {
+            background: $white;
+          }
+        }
+      }
+
+      &.empty {
+        opacity: 0.3;
+      }
+
+      &.today {
+        background: $cyan;
+        color: $bkg-color;
+      }
+    }
+  }
+}

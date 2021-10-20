@@ -95,9 +95,15 @@
   font-weight: 900;
 }
 
-// Quarto Light
+// Quarto Medium
 @font-face {
   font-family: 'Quarto';
   src: url('../fonts/Quarto Medium.otf') format('opentype');
+  font-weight: 500;
+}
+// Quarto Light
+@font-face {
+  font-family: 'Quarto';
+  src: url('../fonts/Quarto Light.otf') format('opentype');
   font-weight: 300;
 }

@@ -30,6 +30,8 @@ $breakpoint-mobile: 900px;
 
 $default-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, opacity 0.4s ease-in-out, border 0.2s ease-in-out;
 
+$fonts-quarto: 'Quarto', 'Roboto', sans-serif;
+
 html,
 body,
 #root {
@@ -53,8 +55,8 @@ body {
   outline: none;
 }
 
-.title, .links * {
-  font-family: 'Quarto', 'Roboto', sans-serif;
+.title, .links *, .title * {
+  font-family: $fonts-quarto;
 }
 
 a,
