@@ -47,6 +47,13 @@
         font-weight: $font-weight-medium;
         font-size: 3em;
 
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+          background: $gray-3;
+        }
+
         &.free {
           background: $cyan;
           color: $bkg-color;

@@ -1,7 +1,7 @@
 import { TokenPayload } from 'google-auth-library';
 import React from 'react';
 import Tabs from '../components/Tabs';
-import { getUserUnit } from '../unitData';
+import { getUserUnit } from '../dataUtils';
 import { getUserInfo } from '../oauth/authUtils';
 import '../styles/routes/Profile.scss';
 

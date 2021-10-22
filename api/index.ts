@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
-import { IUnit, IUnitData, IUnitUpdateData } from 'wtp-shared';
+import { IUnit, IUnitData, IUnitUpdateData, MeetingDay } from 'wtp-shared';
 
 // Google Auth Client
 import { OAuth2Client, TokenPayload } from 'google-auth-library';
@@ -58,16 +58,20 @@ async function getUserUnit(user: TokenPayload) {
 }
 
 app.use((req, _, next) => {
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
-    const idToken = req.headers.authorization.split('Bearer ')[1];
+  try {
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+      const idToken = req.headers.authorization.split('Bearer ')[1];
 
-    client
-      .verifyIdToken({ idToken, audience: process.env.CLIENT_ID })
-      .then((ticket) => {
-        req.user = ticket.getPayload();
-      })
-      .finally(next);
-  } else next();
+      client
+        .verifyIdToken({ idToken, audience: process.env.CLIENT_ID })
+        .then((ticket) => {
+          req.user = ticket.getPayload();
+        })
+        .finally(next);
+    } else next();
+  } catch (err) {
+    next();
+  }
 });
 
 app.get('/api/unit-data', async (req, res) => {
@@ -102,7 +106,7 @@ app.get('/api/me/unit', async (req, res) => {
 });
 
 app.post('/api/update-units', async (req, res) => {
-  const { data }: { data: IUnitUpdateData; token: any } = req.body;
+  const { data }: { data: IUnitUpdateData } = req.body;
 
   if (!req.user) {
     res.status(401).send('Not authenticated.');
@@ -132,6 +136,54 @@ app.post('/api/update-units', async (req, res) => {
   } // Prevent document update conflict from client spamming update requests
 
   res.status(200).send('Successfully updated unit data.');
+});
+
+app.get('/api/free-times/:day', async (req, res) => {
+  const { day } = req.params;
+
+  try {
+    const meetingDay = await db.get(day);
+    res.json(meetingDay);
+  } catch {
+    res.status(404).send('Meeting day not found.');
+    return;
+  }
+});
+
+app.post('/api/update-day', async (req, res) => {
+  if (!req.user) {
+    res.status(401).send('Not authenticated.');
+    return;
+  }
+
+  // TODO: Allow parents to update their own days
+  const { sub } = req.user;
+  if (sub && sub !== process.env.ADMIN_SUB) {
+    res.status(401).send('You are not an administrator.');
+    return;
+  }
+
+  const { day }: { day: MeetingDay } = req.body;
+
+  if (!day || !day.day) {
+    res.status(400).send('Missing day.');
+    return;
+  }
+
+  const formattedDay = new Date(day.day).toISOString().split('T')[0];
+
+  let _rev = undefined;
+
+  try {
+    _rev = (await db.get(formattedDay))._rev;
+  } catch {}
+
+  try {
+    await db.insert({ _rev: _rev, _id: formattedDay, freeTimes: day.freeTimes });
+    res.send('Success.');
+  } catch (e) {
+    res.status(500).send('Failed to update day.');
+  }
 });
 
 module.exports = app;

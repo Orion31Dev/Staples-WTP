@@ -2,7 +2,7 @@ import React from 'react';
 import { IUnitUpdateData } from '../../../../shared/UnitInterfaces';
 import { getAccessToken } from '../../oauth/authUtils';
 import EmailList from '../EmailList';
-import { getUnitData } from '../../unitData';
+import { getUnitData } from '../../dataUtils';
 
 interface UnitSettingsProps {
   unitNum: string;

@@ -9,7 +9,7 @@ import { ReactComponent as Unit3Img } from '../images/unit3.svg';
 import { ReactComponent as Unit4Img } from '../images/unit4.svg';
 import { ReactComponent as Unit5Img } from '../images/unit5.svg';
 import { ReactComponent as Unit6Img } from '../images/unit6.svg';
-import { getUnitData } from '../unitData';
+import { getUnitData } from '../dataUtils';
 import UnitQuestions from '../components/unit/UnitQuestions';
 import UnitVideos from '../components/unit/UnitVideos';
 import Tabs from '../components/Tabs';
