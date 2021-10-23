@@ -57,17 +57,14 @@ async function getUserUnit(user: TokenPayload) {
   return unit;
 }
 
-app.use((req, _, next) => {
+app.use(async (req, _, next) => {
   try {
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
       const idToken = req.headers.authorization.split('Bearer ')[1];
 
-      client
-        .verifyIdToken({ idToken, audience: process.env.CLIENT_ID })
-        .then((ticket) => {
-          req.user = ticket.getPayload();
-        })
-        .finally(next);
+      let ticket = await client.verifyIdToken({ idToken, audience: process.env.CLIENT_ID });
+      req.user = ticket.getPayload();
+      next();
     } else next();
   } catch (err) {
     next();
