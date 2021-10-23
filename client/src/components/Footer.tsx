@@ -17,7 +17,7 @@ export default function Footer() {
   function updateTime() {
     // Time until January 22, 2022
     const then = window.location.href.includes('unit/3')
-      ? new Date('December 14, 2021 00:00:00').getTime() // (secret easter egg shhhh dont tell anyone)
+      ? new Date('October 26, 2021 17:00:00').getTime() // (secret easter egg shhhh dont tell anyone)
       : new Date('January 29, 2022 00:00:00').getTime();
 
     const now = new Date().getTime();
