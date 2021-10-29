@@ -16,9 +16,7 @@ export default function Footer() {
 
   function updateTime() {
     // Time until January 22, 2022
-    const then = window.location.href.includes('unit/3')
-      ? new Date('October 26, 2021 17:00:00').getTime() // (secret easter egg shhhh dont tell anyone)
-      : new Date('January 29, 2022 00:00:00').getTime();
+    const then = new Date('January 29, 2022 00:00:00').getTime();
 
     const now = new Date().getTime();
     const diff = then - now;
@@ -104,7 +102,7 @@ export default function Footer() {
           <div className="seconds e">&nbsp;</div>
         </div>
       </div>
-      <div className="msg">{window.location.href.includes('unit/3') ? 'Time until my iPhone lol' : 'The competition approaches...'}</div>
+      <div className="msg">{window.location.href.includes('unit/3') ? 'There used to be an easter egg here' : 'The competition approaches...'}</div>
       <div className="clock w">
         <div className={'col0 col' + (col0slide ? ' slide' : '')}>
           <div className="days">{subtractFromString(days, 1, true, true, true)}</div>
