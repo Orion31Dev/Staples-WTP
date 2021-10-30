@@ -14,7 +14,7 @@ export default function Tabs(keys: any[], tabIndex: number, onClick: Function, i
   return arr;
 }
 
-export function Tab(props: { tab: number; keys: any[]; onClick: Function; tabIndex: number, isEnum: boolean }) {
+export function Tab(props: { tab: number; keys: any[]; onClick: Function; tabIndex: number; isEnum: boolean }) {
   let name = props.isEnum ? props.keys[props.tab + props.keys.length / 2] : props.keys[props.tab];
 
   return (
@@ -25,7 +25,14 @@ export function Tab(props: { tab: number; keys: any[]; onClick: Function; tabInd
         props.onClick(props.tab);
       }}
     >
-      {props.isEnum ? name.toString().charAt(0) + name.toString().toLowerCase().slice(1) : name}
+      {props.isEnum
+        ? name
+            .split('_')
+            .map((word: string) => {
+              return word[0] + word.toLowerCase().substring(1);
+            })
+            .join(' ')
+        : name}
     </div>
   );
 }

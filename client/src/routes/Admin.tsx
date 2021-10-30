@@ -14,7 +14,7 @@ enum AdminTab {
   NONE,
   UNITS,
   CALENDAR,
-  DRAFT_STATUS
+  DRAFT_STATUSES
 }
 
 const UnitTab = ['1', '2', '3', '4', '5', '6'];
@@ -67,7 +67,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
           </div>
         )}
         {this.state.tabIndex === AdminTab.CALENDAR && <Schedule admin />}
-        {this.state.tabIndex === AdminTab.DRAFT_STATUS && <DraftStatusTable admin />}
+        {this.state.tabIndex === AdminTab.DRAFT_STATUSES && <DraftStatusTable admin />}
       </div>
     );
   }
