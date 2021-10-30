@@ -74,7 +74,7 @@
       }
 
       &.empty {
-        opacity: 0.3;
+        background: mix($gray-1, $bkg-color, 50%);
       }
 
       &.today {

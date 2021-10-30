@@ -27,6 +27,10 @@ export default function Home() {
           Units
         </a>
         <div className="sep">|</div>
+        <a href="/draft-statuses" className="link">
+          Draft Statuses
+        </a>
+        <div className="sep">|</div>
         <AuthButton styleAsLink={true} />
       </div>
     </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { MeetingDay } from 'wtp-shared';
-import { getFreeTimesInDay, updateFreeTimes } from '../../dataUtils';
-import '../../styles/components/FreeTimes.scss';
-import { formatDate, formatHour } from '../../timeUtils';
+import { getFreeTimesInDay, updateFreeTimes } from '../dataUtils';
+import '../styles/components/FreeTimes.scss';
+import { formatDate, formatHour } from '../timeUtils';
 
-export default function FreeTimes(props: { day: Date; back: () => void }) {
+export default function FreeTimes(props: { day: Date; back: () => void, admin: boolean }) {
   let [day, setDay] = React.useState({} as MeetingDay);
 
   React.useEffect(() => {
@@ -70,7 +70,7 @@ export default function FreeTimes(props: { day: Date; back: () => void }) {
   return (
     <div className="free-times">
       <div className="title">
-        Set Free Times for <span>{formatDate(props.day)}</span>
+        {props.admin && "Set "}Free Times for <span>{formatDate(props.day)}</span>
       </div>
       <div className="back" onClick={props.back}>
         &lt; Back to Calendar

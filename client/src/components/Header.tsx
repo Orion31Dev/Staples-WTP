@@ -27,6 +27,10 @@ export default function Header() {
         <a className="styled" href="/units">
           Units
         </a>
+        <div className="sep">|</div>
+        <a className="styled" href="/draft-statuses">
+          Draft Statuses
+        </a>
         {isAdmin && <div className="sep">|</div> /* Why did have to to write this twice lol */}
         {isAdmin && (
           <a href="/admin" className="styled">

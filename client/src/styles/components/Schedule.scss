@@ -1,0 +1,6 @@
+.schedule {
+  transition: opacity 0.3s ease-in-out;
+  &.fade {
+    opacity: 0;
+  }
+}

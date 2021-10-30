@@ -9,12 +9,13 @@ import { ReactComponent as Unit3Img } from '../images/unit3.svg';
 import { ReactComponent as Unit4Img } from '../images/unit4.svg';
 import { ReactComponent as Unit5Img } from '../images/unit5.svg';
 import { ReactComponent as Unit6Img } from '../images/unit6.svg';
-import { getUnitData } from '../dataUtils';
+import { getUnitData, getUserUnit } from '../dataUtils';
 import UnitQuestions from '../components/unit/UnitQuestions';
 import UnitVideos from '../components/unit/UnitVideos';
 import Tabs from '../components/Tabs';
 
 import Confetti from 'react-confetti';
+import Schedule from '../components/Schedule';
 
 interface UnitProps {
   match: any;
@@ -24,10 +25,12 @@ enum UnitTab {
   NONE,
   QUESTIONS,
   VIDEOS,
+  SCHEDULE,
 }
 
 interface UnitState {
   unitData: IUnit;
+  userUnit: string | undefined;
   tabIndex: number;
 }
 
@@ -38,15 +41,18 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
     this.state = {
       unitData: {} as IUnit,
       tabIndex: UnitTab.NONE,
+      userUnit: '',
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let key = this.props.match.params.unitNumber.toString() as keyof IUnitData;
 
     getUnitData().then((json) => {
       this.setState({ unitData: json[key], tabIndex: UnitTab.QUESTIONS });
     });
+
+    this.setState({ userUnit: await getUserUnit() });
   }
 
   render() {
@@ -92,7 +98,7 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
           Unit {this.props.match.params.unitNumber}
         </div>
         <div className="tabs flex">
-          {Tabs(Object.keys(UnitTab), this.state.tabIndex, (tab: number) => {
+          {Tabs(this.filterTabs.bind(this)(), this.state.tabIndex, (tab: number) => {
             if (this.state.unitData.topic) this.setState.bind(this)({ tabIndex: tab });
           })}
           {this.state.unitData.gDrive && (
@@ -103,8 +109,30 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
         </div>
         {this.state.tabIndex === UnitTab.QUESTIONS && <UnitQuestions unitData={this.state.unitData} />}
         {this.state.tabIndex === UnitTab.VIDEOS && <UnitVideos unitData={this.state.unitData} />}
+        {this.state.tabIndex === UnitTab.SCHEDULE && <Schedule />}
       </div>
     );
+  }
+
+  filterTabs() {
+    let arr = [];
+
+    let showSchedule = this.state.userUnit === this.props.match.params.unitNumber;
+
+    for (let obj in UnitTab) {
+      let num = parseInt(obj);
+      if (isNaN(num)) {
+        if (obj === 'SCHEDULE') {
+          if (showSchedule) arr.push(obj);
+        } else arr.push(obj);
+      } else {
+        if (UnitTab[num] === 'SCHEDULE') {
+          if (showSchedule) arr.push(obj);
+        } else arr.push(obj);
+      }
+    }
+
+    return arr;
   }
 }
 

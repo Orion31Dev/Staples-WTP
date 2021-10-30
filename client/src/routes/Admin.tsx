@@ -1,7 +1,7 @@
 import React from 'react';
-import FreeTimes from '../components/admin/FreeTimes';
 import UnitSettings from '../components/admin/UnitSettings';
-import Calendar from '../components/Calendar';
+import DraftStatusTable from '../components/DraftStatusTable';
+import Schedule from '../components/Schedule';
 import Tabs from '../components/Tabs';
 import { getUserInfo } from '../oauth/authUtils';
 import '../styles/routes/Admin.scss';
@@ -14,6 +14,7 @@ enum AdminTab {
   NONE,
   UNITS,
   CALENDAR,
+  DRAFT_STATUS
 }
 
 const UnitTab = ['1', '2', '3', '4', '5', '6'];
@@ -41,13 +42,6 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
     HasAdminAccess().then((a) => this.setState({ access: a }));
   }
 
-  setSelectedDate(date: Date | undefined) {
-    this.setState({ calendarFade: true });
-    setTimeout(() => {
-      this.setState({ selectedDate: date, calendarFade: false });
-    }, 300);
-  }
-
   render() {
     if (!this.state.access) return this.NoAccessPage();
 
@@ -72,15 +66,8 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
             <UnitSettings unitNum={UnitTab[this.state.unitTabIndex]} />
           </div>
         )}
-        {this.state.tabIndex === AdminTab.CALENDAR && (
-          <div className={`calendar-wrapper ${this.state.calendarFade ? 'fade' : ''}`}>
-            {this.state.selectedDate ? (
-              <FreeTimes back={() => this.setSelectedDate(undefined)} day={this.state.selectedDate} />
-            ) : (
-              <Calendar onSelect={(d) => this.setSelectedDate(d)} />
-            )}
-          </div>
-        )}
+        {this.state.tabIndex === AdminTab.CALENDAR && <Schedule admin />}
+        {this.state.tabIndex === AdminTab.DRAFT_STATUS && <DraftStatusTable admin />}
       </div>
     );
   }

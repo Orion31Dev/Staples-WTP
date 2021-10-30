@@ -5,6 +5,7 @@ import { IUnit, IUnitData, IUnitUpdateData, MeetingDay } from 'wtp-shared';
 
 // Google Auth Client
 import { OAuth2Client, TokenPayload } from 'google-auth-library';
+import DraftStatuses from 'wtp-shared/DraftStatusInterfaces';
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 // Someone please explain why this didn't work in a separate d.ts file
@@ -86,6 +87,11 @@ app.get('/api/unit-data', async (req, res) => {
   res.json(json);
 });
 
+app.get('/api/draft-status', async (req, res) => {
+  let json = (await db.get('draft_status')) as DraftStatuses;
+  res.json(json);
+});
+
 app.get('/api/me/unit', async (req, res) => {
   if (!req.user) {
     res.status(401).send('Not authenticated.');
@@ -130,7 +136,34 @@ app.post('/api/update-units', async (req, res) => {
     await db.insert(unitData);
   } catch {
     res.status(500).send('Failed to update unit data.');
+    return;
   } // Prevent document update conflict from client spamming update requests
+
+  res.status(200).send('Successfully updated unit data.');
+});
+
+app.post('/api/update-draft-status', async (req, res) => {
+  const { data }: { data: DraftStatuses } = req.body;
+
+  if (!req.user) {
+    res.status(401).send('Not authenticated.');
+    return;
+  }
+
+  const { sub } = req.user;
+  if (sub && sub !== process.env.ADMIN_SUB) {
+    res.status(401).send('You are not an administrator.');
+    return;
+  }
+
+  const unitData = await db.get('draft_status');
+
+  try {
+    await db.insert({ ...data, _id: 'draft_status', _rev: unitData._rev });
+  } catch {
+    res.status(500).send('Failed to update unit data.');
+    return;
+  }
 
   res.status(200).send('Successfully updated unit data.');
 });

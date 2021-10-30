@@ -1,4 +1,5 @@
 import { MeetingDay } from 'wtp-shared';
+import DraftStatuses from 'wtp-shared/DraftStatusInterfaces';
 import { getAccessToken } from './oauth/authUtils';
 
 export async function getUnitData() {
@@ -14,7 +15,6 @@ export async function getUnitData() {
     },
   });
 
-  console.log(await getUserUnit());
   return await data.json();
 }
 
@@ -33,8 +33,10 @@ export async function getUserUnit() {
   });
 
   try {
-    let json = await (await data.text()).replaceAll('"', '');
-    return json;
+    let text = (await data.text()).replaceAll('"', '');
+    if (text.includes('Not authenticated')) return undefined;
+
+    return text;
   } catch {
     return undefined;
   }
@@ -80,6 +82,46 @@ export async function updateFreeTimes(day: MeetingDay) {
       },
       body: JSON.stringify({
         day,
+      }),
+    });
+  } catch {
+    return false;
+  }
+
+  return true;
+}
+
+export async function getDraftStatuses() {
+  let url;
+
+  if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/draft-status';
+  else url = 'https://shs-wtp.vercel.app/api/draft-status';
+
+  let data = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${getAccessToken()}`,
+    },
+  });
+
+  return await data.json();
+}
+
+export async function updateDraftStatuses(data: DraftStatuses) {
+  let url;
+
+  if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/update-draft-status/';
+  else url = 'https://shs-wtp.vercel.app/api/update-draft-status';
+
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+      body: JSON.stringify({
+        data,
       }),
     });
   } catch {
