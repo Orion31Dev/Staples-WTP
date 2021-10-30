@@ -91,18 +91,20 @@
 
     .place-question {
       position: absolute;
-      top: 1.4em;
-      bottom: 1.4em;
-      left: 1.4em;
-      right: 1.4em;
+      top: 1.5em;
+      bottom: 1.5em;
+      left: 1.5em;
+      right: 1.5em;
 
-      font-size: 1.7em;
+      border-radius: 1em;
+
+      font-size: 3.2rem;
 
       align-content: flex-start;
 
       padding: 1em;
 
-      background: $gray-1;
+      background: mix($gray-1, $bkg-color, 50%);
       z-index: 100;
 
       .label {
