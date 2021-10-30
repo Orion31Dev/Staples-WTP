@@ -3,7 +3,7 @@ import DraftStatuses from 'wtp-shared/DraftStatusInterfaces';
 import { getDraftStatuses, updateDraftStatuses } from '../dataUtils';
 import '../styles/components/DraftStatusTable.scss';
 
-const statusNames = ['Needs Work', 'Ok; More Work To Do', 'Close', 'Even Closer', 'Done!'];
+const statusNames = ['Needs Work', 'Ok. More Work To Do', 'Close', 'Even Closer', 'Done!'];
 
 export default function DraftStatusTable(props: { admin?: boolean }) {
   const [data, setData] = useState({} as DraftStatuses);
