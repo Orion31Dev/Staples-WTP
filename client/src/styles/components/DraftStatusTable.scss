@@ -50,6 +50,13 @@
       font-family: $fonts-quarto;
       font-weight: $font-weight-bold;
     }
+
+    .unit-3 {
+      background: linear-gradient(45deg, $cyan, $pink);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
 
   .q1,

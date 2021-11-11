@@ -10,6 +10,7 @@ import Admin from './routes/Admin';
 import Profile from './routes/Profile';
 import Page404 from './routes/Page404';
 import DraftStatus from './routes/DraftStatus';
+import EventCalendar from './routes/EventCalendar';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Switch>
               <Route exact path="/units" component={Units} />
               <Route exact path="/admin" component={Admin} />
+              <Route exact path="/calendar" component={EventCalendar} />
               <Route exact path="/draft-statuses" component={DraftStatus} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/unit/:unitNumber" component={Unit} />
