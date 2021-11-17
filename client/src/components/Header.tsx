@@ -28,6 +28,10 @@ export default function Header() {
           Units
         </a>
         <div className="sep">|</div>
+        <a className="styled" href="https://docs.google.com/document/d/15uexFKp_Kgawl1AXJ48_33_2207Nf91gYJbFLpKfUfU/edit">
+          Calendar
+        </a>
+        <div className="sep">|</div>
         <a className="styled" href="/draft-statuses">
           Draft Statuses
         </a>

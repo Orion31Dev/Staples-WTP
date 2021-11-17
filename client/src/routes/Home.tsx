@@ -27,6 +27,10 @@ export default function Home() {
           Units
         </a>
         <div className="sep">|</div>
+        <a href="https://docs.google.com/document/d/15uexFKp_Kgawl1AXJ48_33_2207Nf91gYJbFLpKfUfU/edit" className="link">
+          Calendar
+        </a>
+        <div className="sep">|</div>
         <a href="/draft-statuses" className="link">
           Draft Statuses
         </a>
