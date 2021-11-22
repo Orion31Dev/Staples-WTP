@@ -11,14 +11,6 @@ export function formatDate(date: Date) {
   return `${dayNames[date.getDay()]}, ${monthNames[date.getMonth()].substr(0, 3)}. ${date.getDate()}, ${date.getFullYear()}`;
 }
 
-export function formatHour(hour: number) {
-  let meridiam = hour >= 12 && hour !== 24 ? 'pm' : 'am';
-  if (hour > 12) {
-    hour -= 12;
-  }
-
-  return hour + ' ' + meridiam;
-}
 
 export const monthNames = [
   'January',

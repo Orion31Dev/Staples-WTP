@@ -42,12 +42,12 @@ export async function getUserUnit() {
   }
 }
 
-export async function getFreeTimesInDay(day: Date) {
+export async function getMeetingDayFromDay(date: Date) {
   let url;
-  let formattedDay = day.toISOString().split('T')[0];
+  let formattedDay = date.toISOString().split('T')[0];
 
-  if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/free-times/' + formattedDay;
-  else url = 'https://shs-wtp.vercel.app/api/free-times/' + formattedDay;
+  if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/meeting-days';
+  else url = 'https://shs-wtp.vercel.app/api/meeting-days';
 
   try {
     const data = await fetch(url, {
@@ -61,17 +61,26 @@ export async function getFreeTimesInDay(day: Date) {
     if (data.status === 404) return undefined;
 
     let json = await data.json();
-    return json;
+
+    if (json[formattedDay]) {
+      json[formattedDay].date = new Date(json[formattedDay].date);
+      return json[formattedDay];
+    } else {
+      return {
+        date: date,
+        slots: [],
+      } as MeetingDay;
+    }
   } catch {
     return undefined;
   }
 }
 
-export async function updateFreeTimes(day: MeetingDay) {
+export async function updateMeetingDay(day: MeetingDay) {
   let url;
 
-  if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/update-day/';
-  else url = 'https://shs-wtp.vercel.app/api/update-day';
+  if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/update-meeting-day/';
+  else url = 'https://shs-wtp.vercel.app/api/update-meeting-day';
 
   try {
     await fetch(url, {
@@ -81,7 +90,7 @@ export async function updateFreeTimes(day: MeetingDay) {
         Authorization: `Bearer ${getAccessToken()}`,
       },
       body: JSON.stringify({
-        day,
+        day: day,
       }),
     });
   } catch {

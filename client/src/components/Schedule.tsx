@@ -1,5 +1,5 @@
 import React from 'react';
-import FreeTimes from './FreeTimes';
+import Slots from './Slots';
 import Calendar from './Calendar';
 import '../styles/components/Schedule.scss';
 
@@ -18,7 +18,7 @@ export default function Schedule(props: { admin?: boolean }) {
   return (
     <div className={`schedule ${calendarFade ? 'fade' : ''}`}>
       {selectedDate ? (
-        <FreeTimes back={() => setSelectedDate(undefined)} day={selectedDate} admin={props.admin || false} />
+        <Slots back={() => setSelectedDate(undefined)} date={selectedDate} admin={props.admin || false} />
       ) : (
         <Calendar onSelect={(d) => setSelectedDate(d)} />
       )}

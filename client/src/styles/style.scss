@@ -13,6 +13,8 @@ $purple: #cc2ad3;
 
 $bkg-color: #222529;
 
+$input-color: mix($bkg-color, $black, 70%);
+
 $gray-5: mix($bkg-color, $white, 40%);
 $gray-4: mix($bkg-color, $white, 60%);
 $gray-3: mix($bkg-color, $white, 80%);
@@ -28,7 +30,8 @@ $font-weight-thin: 100;
 
 $breakpoint-mobile: 900px;
 
-$default-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, opacity 0.4s ease-in-out, border 0.2s ease-in-out;
+$default-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, opacity 0.4s ease-in-out, border 0.2s ease-in-out,
+  box-shadow 0.2s ease-in-out;
 
 $fonts-quarto: 'Quarto', 'Roboto', sans-serif;
 
@@ -47,7 +50,8 @@ body {
   background: $bkg-color;
 }
 
-*:not(body), input {
+*:not(body),
+input {
   color: $white;
   font-family: 'Roboto', sans-serif;
   font-weight: $font-weight-normal;
@@ -55,7 +59,9 @@ body {
   outline: none;
 }
 
-.title, .links *, .title * {
+.title,
+.links *,
+.title * {
   font-family: $fonts-quarto;
 }
 
@@ -106,12 +112,12 @@ a:visited {
     outline: none;
 
     font-weight: $font-weight-bold;
-    font-size: 1em; 
+    font-size: 1em;
 
     width: 70%;
 
     border: none;
-    border-bottom: .1em solid $gray-3;
+    border-bottom: 0.1em solid $gray-3;
 
     &:focus {
       border-color: $white;
@@ -141,6 +147,33 @@ a:visited {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 // Scrollbar

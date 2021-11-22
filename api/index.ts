@@ -168,19 +168,17 @@ app.post('/api/update-draft-status', async (req, res) => {
   res.status(200).send('Successfully updated unit data.');
 });
 
-app.get('/api/free-times/:day', async (req, res) => {
-  const { day } = req.params;
-
+app.get('/api/meeting-days', async (req, res) => {
   try {
-    const meetingDay = await db.get(day);
-    res.json(meetingDay);
+    const meetingDays = await db.get("meeting_days");
+    res.json(meetingDays);
   } catch {
-    res.status(404).send('Meeting day not found.');
+    res.status(500).send('An error occurred.');
     return;
   }
 });
 
-app.post('/api/update-day', async (req, res) => {
+app.post('/api/update-meeting-day', async (req, res) => {
   if (!req.user) {
     res.status(401).send('Not authenticated.');
     return;
@@ -195,21 +193,19 @@ app.post('/api/update-day', async (req, res) => {
 
   const { day }: { day: MeetingDay } = req.body;
 
-  if (!day || !day.day) {
+  if (!day || !day.date) {
     res.status(400).send('Missing day.');
     return;
   }
 
-  const formattedDay = new Date(day.day).toISOString().split('T')[0];
+  const formattedDay = new Date(day.date).toISOString().split('T')[0];
 
-  let _rev = undefined;
+  let currentDays = await db.get("meeting_days");
 
-  try {
-    _rev = (await db.get(formattedDay))._rev;
-  } catch {}
+  currentDays[formattedDay] = day;
 
   try {
-    await db.insert({ _rev: _rev, _id: formattedDay, freeTimes: day.freeTimes });
+    await db.insert(currentDays);
     res.send('Success.');
   } catch (e) {
     res.status(500).send('Failed to update day.');

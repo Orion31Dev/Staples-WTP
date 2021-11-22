@@ -1,0 +1,177 @@
+@import '../style';
+
+.slots {
+  font-size: 0.8em !important;
+
+  .title {
+    font-weight: $font-weight-thin !important;
+    cursor: text !important;
+
+    span {
+      font-weight: $font-weight-bold;
+    }
+
+    margin-bottom: 0 !important;
+  }
+
+  .back {
+    font-size: 1.5em;
+
+    margin: -0.5em 0 0.75em;
+
+    cursor: pointer;
+
+    z-index: 100;
+
+    &:hover {
+      color: $gray-5;
+    }
+
+    text-align: center;
+    font-weight: $font-weight-thin !important;
+  }
+
+  table {
+    margin: 0 auto 2em;
+    border-spacing: 0.6em;
+
+    td {
+      .hour-slot {
+        padding: 0.3em 0.5em;
+        background: $gray-2;
+        border-radius: 2em;
+
+        text-align: center;
+
+        font-family: $fonts-quarto;
+        font-weight: $font-weight-medium;
+        font-size: 3em;
+
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+          background: $gray-3;
+        }
+
+        &.free {
+          background: $cyan;
+          color: $bkg-color;
+        }
+      }
+    }
+  }
+}
+
+.slot,
+.create-slot {
+  font-size: 2em;
+
+  display: block;
+  width: 80%;
+}
+
+.slots-list {
+  margin: 1.5em 0;
+}
+
+.slot {
+  text-align: center;
+
+  background: $gray-1;
+  box-shadow: .2em .2em 0 rgba(0, 0, 0, 0.2);
+
+  margin: 0.4em auto;
+  border-radius: 0.5em;
+  padding: 0.7em 0.2em;
+
+  &.admin:hover {
+    background: $red;
+    box-shadow: .2em .2em 0 rgba(255, 0, 0, 0.2);
+
+    cursor: pointer;
+  }
+
+  div {
+    display: inline-block;
+    margin: 0 .5em;
+  }
+}
+
+.create-slot {
+  border: 0.07em solid $white;
+  border-radius: 1em;
+
+  margin: 0 auto;
+  padding: 0.2em;
+
+  .slot-title {
+    text-align: center;
+
+    font-size: 1.5em;
+    margin: 0.2em;
+
+    font-family: $fonts-quarto;
+  }
+
+  .start,
+  .end {
+    text-align: center;
+    margin: 0.2em;
+
+    .label {
+      width: 3em;
+      display: inline-flex;
+      justify-content: space-between;
+
+      text-align: right;
+    }
+  }
+
+  .hour,
+  .minutes,
+  .btn-am,
+  .btn-create {
+    background: $input-color;
+    border: none;
+    border-radius: 0.5em;
+
+    font-size: 0.7em;
+
+    padding: 0.5em;
+    margin: 0 0.2em;
+  }
+
+  .btn-am,
+  .btn-create {
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      background: $gray-2;
+    }
+  }
+
+  .btn-am {
+    display: inline;
+
+    padding: 0.5em 1em;
+  }
+
+  .btn-create {
+    text-align: center;
+    display: block;
+
+    width: 16em;
+
+    margin: 0.4em auto 0.2em;
+  }
+
+  .hour {
+    width: 2.5em;
+  }
+
+  .minutes {
+    width: 3em;
+  }
+}
