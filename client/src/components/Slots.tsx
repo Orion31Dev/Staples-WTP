@@ -170,7 +170,7 @@ function CreateSlotDialog(props: { day: MeetingDay; onUpdateDay: Function }) {
           let newMeetingDay = { date: props.day.date, slots: [...props.day.slots, newSlot] } as MeetingDay;
 
           updateMeetingDay(newMeetingDay).then(() => {
-            // props.onUpdateDay(newMeetingDay);
+            props.onUpdateDay(newMeetingDay);
           });
         }}
       >
