@@ -171,6 +171,10 @@ app.post('/api/update-draft-status', async (req, res) => {
 app.get('/api/meeting-days', async (req, res) => {
   try {
     const meetingDays = await db.get("meeting_days");
+
+    delete meetingDays._id;
+    delete meetingDays._rev;
+
     res.json(meetingDays);
   } catch {
     res.status(500).send('An error occurred.');

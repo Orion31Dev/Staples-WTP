@@ -8,6 +8,7 @@ export function getFirstDayInMonth(month: number) {
 }
 
 export function formatDate(date: Date) {
+  console.log(date);
   return `${dayNames[date.getDay()]}, ${monthNames[date.getMonth()].substr(0, 3)}. ${date.getDate()}, ${date.getFullYear()}`;
 }
 

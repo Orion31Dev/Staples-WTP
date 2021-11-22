@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MeetingDay, Slot as ISlot } from 'wtp-shared';
-import { getMeetingDayFromDay, updateMeetingDay } from '../dataUtils';
+import { getMeetingDayFromDay, getMeetingDays, updateMeetingDay } from '../dataUtils';
 import '../styles/components/Slots.scss';
 import { formatDate } from '../timeUtils';
 
-export default function Slots(props: { date: Date; back: () => void; admin: boolean }) {
-  let [day, setDay] = React.useState({} as MeetingDay);
+export default function Slots(props: { day: MeetingDay | Date; back?: () => void; admin: boolean }) {
+  let [day, setDay] = useState({} as MeetingDay);
 
   React.useEffect(() => {
-    getMeetingDayFromDay(props.date).then((day) => {
-      setDay(day);
-    });
-  }, [props.date]);
+    if (props.day instanceof Date) {
+      getMeetingDayFromDay(props.day).then(setDay);
+    } else {
+      setDay(props.day);
+    }
+  }, [props.day]);
 
   function onDelete(slot: ISlot) {
     let newDay = {
@@ -25,11 +27,13 @@ export default function Slots(props: { date: Date; back: () => void; admin: bool
   return (
     <div className="slots">
       <div className="title">
-        {props.admin && 'Set '}Slots for <span>{formatDate(props.date)}</span>
+        {props.admin && 'Set '}Slots for <span>{day.date ? formatDate(day.date) : ''}</span>
       </div>
-      <div className="back" onClick={props.back}>
-        &lt; Back to Calendar
-      </div>
+      {props.back && (
+        <div className="back" onClick={props.back}>
+          &lt; Back to Calendar
+        </div>
+      )}
       <div className="slots-list">
         {day.slots?.map((slot, i) => (
           <Slot
@@ -42,20 +46,20 @@ export default function Slots(props: { date: Date; back: () => void; admin: bool
           />
         ))}
       </div>
-      <CreateSlotDialog day={day} onUpdateDay={setDay} />
+      {props.admin && <CreateSlotDialog day={day} onUpdateDay={setDay} />}
     </div>
   );
 }
 
 function CreateSlotDialog(props: { day: MeetingDay; onUpdateDay: Function }) {
-  let [sHour, setSHour] = React.useState('11');
-  let [sMin, setSMin] = React.useState('30');
-  let [sAm, setSAm] = React.useState(true);
-  let [eHour, setEHour] = React.useState('12');
-  let [eMin, setEMin] = React.useState('00');
-  let [eAm, setEAm] = React.useState(false);
+  let [sHour, setSHour] = useState('11');
+  let [sMin, setSMin] = useState('30');
+  let [sAm, setSAm] = useState(true);
+  let [eHour, setEHour] = useState('12');
+  let [eMin, setEMin] = useState('00');
+  let [eAm, setEAm] = useState(false);
 
-  let [error, setError] = React.useState('');
+  let [error, setError] = useState('');
 
   if (!props.day || !props.day.date) return <div></div>;
 
@@ -238,4 +242,34 @@ function calculateSlotLength(slot: ISlot) {
   let totalMins = diff * 60 + diffMins;
 
   return totalMins;
+}
+
+export function AllSlots() {
+  let [days, setDays] = useState([] as MeetingDay[]);
+
+  useEffect(() => {
+    getMeetingDays().then((days) => {
+      let dayArr = [];
+
+      for (let key in days) {
+        let obj = days[key] as MeetingDay;
+
+        if (obj.slots.length === 0) continue;
+
+        dayArr.push({ ...obj, date: new Date(obj.date) });
+      }
+
+      setDays(dayArr);
+    });
+  }, []);
+
+  if (days.length === 0) return <div>No Slots</div>;
+
+  return (
+    <div className="all-slot">
+      {days.map((day) => {
+        return <Slots day={day} key={day.date.toISOString()} admin={false} />;
+      })}
+    </div>
+  );
 }

@@ -18,7 +18,7 @@ export default function Schedule(props: { admin?: boolean }) {
   return (
     <div className={`schedule ${calendarFade ? 'fade' : ''}`}>
       {selectedDate ? (
-        <Slots back={() => setSelectedDate(undefined)} date={selectedDate} admin={props.admin || false} />
+        <Slots back={() => setSelectedDate(undefined)} day={selectedDate} admin={props.admin || false} />
       ) : (
         <Calendar onSelect={(d) => setSelectedDate(d)} />
       )}

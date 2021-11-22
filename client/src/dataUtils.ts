@@ -42,9 +42,8 @@ export async function getUserUnit() {
   }
 }
 
-export async function getMeetingDayFromDay(date: Date) {
+export async function getMeetingDays() {
   let url;
-  let formattedDay = date.toISOString().split('T')[0];
 
   if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/meeting-days';
   else url = 'https://shs-wtp.vercel.app/api/meeting-days';
@@ -61,6 +60,17 @@ export async function getMeetingDayFromDay(date: Date) {
     if (data.status === 404) return undefined;
 
     let json = await data.json();
+    return json;
+  } catch {
+    return undefined;
+  }
+}
+
+export async function getMeetingDayFromDay(date: Date) {
+  let formattedDay = date.toISOString().split('T')[0];
+
+  try {
+    let json = await getMeetingDays();
 
     if (json[formattedDay]) {
       json[formattedDay].date = new Date(json[formattedDay].date);

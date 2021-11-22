@@ -16,6 +16,7 @@ import Tabs from '../components/Tabs';
 
 import Confetti from 'react-confetti';
 import Schedule from '../components/Schedule';
+import { AllSlots } from '../components/Slots';
 
 interface UnitProps {
   match: any;
@@ -109,7 +110,7 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
         </div>
         {this.state.tabIndex === UnitTab.QUESTIONS && <UnitQuestions unitData={this.state.unitData} />}
         {this.state.tabIndex === UnitTab.VIDEOS && <UnitVideos unitData={this.state.unitData} />}
-        {this.state.tabIndex === UnitTab.SCHEDULE && <Schedule />}
+        {this.state.tabIndex === UnitTab.SCHEDULE && <AllSlots />}
       </div>
     );
   }
