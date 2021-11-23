@@ -46,6 +46,8 @@ export default function Slots(props: { day: MeetingDay | Date; back?: () => void
     });
   }
 
+  if (!day.slots) return <div></div>;
+
   return (
     <div className="slots">
       <div className="title">
@@ -57,21 +59,20 @@ export default function Slots(props: { day: MeetingDay | Date; back?: () => void
         </div>
       )}
       <div className="slots-list">
-        {day.slots
-          .map((slot, i) => (
-            <Slot
-              key={i}
-              slot={slot}
-              onDelete={() => {
-                onDelete(slot);
-              }}
-              onClaim={() => {
-                onClaim(slot);
-              }}
-              admin={props.delete || props.delete}
-              unit={props.unit}
-            />
-          ))}
+        {day.slots.map((slot, i) => (
+          <Slot
+            key={i}
+            slot={slot}
+            onDelete={() => {
+              onDelete(slot);
+            }}
+            onClaim={() => {
+              onClaim(slot);
+            }}
+            admin={props.delete || props.delete}
+            unit={props.unit}
+          />
+        ))}
       </div>
       {props.admin && <CreateSlotDialog day={day} onUpdateDay={setDay} />}
     </div>
@@ -279,6 +280,7 @@ function calculateSlotLength(slot: ISlot) {
 
 export function AllSlots(props: { admin?: boolean; unit?: number }) {
   let [days, setDays] = useState([] as MeetingDay[]);
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getMeetingDays().then((days) => {
@@ -287,21 +289,24 @@ export function AllSlots(props: { admin?: boolean; unit?: number }) {
       for (let key in days) {
         let obj = days[key] as MeetingDay;
 
-        if (props.unit) {
-          obj.slots = obj.slots.filter((slot) => slot.unit === props.unit || slot.unit === undefined);
-        } 
+        let slots = obj.slots;
 
-        if (obj.slots.length === 0) continue;
+        if (props.unit) {
+          slots = obj.slots.filter((slot) => slot.unit === props.unit || slot.unit === undefined);
+        }
+
+        if (slots.length === 0) continue;
         if (obj.date < new Date()) continue; // Date in past
 
-        dayArr.push({ ...obj, date: new Date(obj.date) });
+        dayArr.push({ slots: slots, date: new Date(obj.date) });
       }
 
       setDays(dayArr);
+      setLoading(false);
     });
-  }, []);
+  }, [props.unit]);
 
-  if (days.length === 0) return <div className="no-slots">No Free Slots</div>;
+  if (days.length === 0) return loading ? <div className="title">Loading</div> : <div className="no-slots">No Free Slots</div>;
 
   return (
     <div className="all-slot">
