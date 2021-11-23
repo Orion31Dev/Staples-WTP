@@ -72,14 +72,14 @@
 }
 
 .slots-list {
-  margin: 1.5em 0;
+  margin: 0.2em 0 1.5em;
 }
 
 .slot {
   text-align: center;
 
   background: $gray-1;
-  box-shadow: .2em .2em 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0.2em 0.2em 0 rgba(0, 0, 0, 0.2);
 
   margin: 0.4em auto;
   border-radius: 0.5em;
@@ -87,14 +87,37 @@
 
   &.admin:hover {
     background: $red;
-    box-shadow: .2em .2em 0 rgba(255, 0, 0, 0.2);
+    box-shadow: 0.2em 0.2em 0 rgba(255, 0, 0, 0.2);
 
     cursor: pointer;
   }
 
+  &.claimable:hover {
+    background: $gray-3;
+    box-shadow: 0.2em 0.2em 0 rgba($gray-2, 0.2);
+
+    cursor: pointer;
+  }
+
+  &.claimable.claimed:hover {
+    background: mix($green, $bkg-color, 30%);
+    box-shadow: 0.2em 0.2em 0 rgba($green, 0.1);
+
+    cursor: pointer;
+  }
+
+  &.claimed {
+    background: mix($green, $bkg-color, 50%);
+    box-shadow: 0.2em 0.2em 0 rgba($green, 0.2);
+  }
+
   div {
     display: inline-block;
-    margin: 0 .5em;
+    margin: 0 0.5em;
+  }
+
+  .slot-unit {
+    font-weight: $font-weight-bold;
   }
 }
 
@@ -174,4 +197,14 @@
   .minutes {
     width: 3em;
   }
+}
+
+.no-slots {
+  text-align: center;
+  font-size: 3em;
+  margin: .5em;
+
+  font-family: $fonts-quarto;
+  font-weight: bold;
+  color: $red;
 }

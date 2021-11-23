@@ -1,4 +1,4 @@
-import { MeetingDay } from 'wtp-shared';
+import { MeetingDay, Slot } from 'wtp-shared';
 import DraftStatuses from 'wtp-shared/DraftStatusInterfaces';
 import { getAccessToken } from './oauth/authUtils';
 
@@ -101,6 +101,32 @@ export async function updateMeetingDay(day: MeetingDay) {
       },
       body: JSON.stringify({
         day: day,
+      }),
+    });
+  } catch {
+    return false;
+  }
+
+  return true;
+}
+
+export async function toggleSlotClaim(meetingDay: MeetingDay, slot: Slot, unit: number) {
+  let url;
+
+  if (process.env.NODE_ENV !== 'production') url = 'http://localhost:3001/api/toggle-slot-claim/';
+  else url = 'https://shs-wtp.vercel.app/api/toggle-slot-claim';
+
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+      body: JSON.stringify({
+        meetingDay: meetingDay,
+        slot: slot,
+        unit: unit,
       }),
     });
   } catch {

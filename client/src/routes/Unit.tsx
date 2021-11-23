@@ -15,7 +15,6 @@ import UnitVideos from '../components/unit/UnitVideos';
 import Tabs from '../components/Tabs';
 
 import Confetti from 'react-confetti';
-import Schedule from '../components/Schedule';
 import { AllSlots } from '../components/Slots';
 
 interface UnitProps {
@@ -110,7 +109,7 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
         </div>
         {this.state.tabIndex === UnitTab.QUESTIONS && <UnitQuestions unitData={this.state.unitData} />}
         {this.state.tabIndex === UnitTab.VIDEOS && <UnitVideos unitData={this.state.unitData} />}
-        {this.state.tabIndex === UnitTab.SCHEDULE && <AllSlots />}
+        {this.state.tabIndex === UnitTab.SCHEDULE && <AllSlots unit={parseInt(this.props.match.params.unitNumber)} />}
       </div>
     );
   }

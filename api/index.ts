@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
-import { IUnit, IUnitData, IUnitUpdateData, MeetingDay } from 'wtp-shared';
+import { IUnit, IUnitData, IUnitUpdateData, MeetingDay, Slot } from 'wtp-shared';
 
 // Google Auth Client
 import { OAuth2Client, TokenPayload } from 'google-auth-library';
@@ -170,7 +170,7 @@ app.post('/api/update-draft-status', async (req, res) => {
 
 app.get('/api/meeting-days', async (req, res) => {
   try {
-    const meetingDays = await db.get("meeting_days");
+    const meetingDays = await db.get('meeting_days');
 
     delete meetingDays._id;
     delete meetingDays._rev;
@@ -204,7 +204,7 @@ app.post('/api/update-meeting-day', async (req, res) => {
 
   const formattedDay = new Date(day.date).toISOString().split('T')[0];
 
-  let currentDays = await db.get("meeting_days");
+  let currentDays = await db.get('meeting_days');
 
   currentDays[formattedDay] = day;
 
@@ -213,6 +213,63 @@ app.post('/api/update-meeting-day', async (req, res) => {
     res.send('Success.');
   } catch (e) {
     res.status(500).send('Failed to update day.');
+  }
+});
+
+app.post('/api/toggle-slot-claim', async (req, res) => {
+  let { meetingDay, slot, unit } = req.body;
+
+  let userUnit = req.user ? await getUserUnit(req.user) : undefined;
+  if (!req.user || (userUnit !== unit && process.env.ADMIN_SUB !== req.user?.sub)) {
+    res.status(401).send('Not authenticated.');
+    return;
+  }
+
+  if (!meetingDay || !slot || !unit) {
+    res.status(400).send('Invalid request.');
+    return;
+  }
+
+  let meetingDays = await db.get('meeting_days');
+
+  const formattedDay = new Date(meetingDay.date).toISOString().split('T')[0];
+
+  if (!meetingDays[formattedDay]) {
+    res.status(400).send('Invalid request.');
+    return;
+  }
+
+  let day = meetingDays[formattedDay];
+
+  let savedSlot = day.slots.find(
+    (s: Slot) =>
+      s.start.hour === slot.start.hour &&
+      s.start.minutes === slot.start.minutes &&
+      s.end.hour === slot.end.hour &&
+      s.end.minutes === slot.end.minutes
+  );
+
+  if (!savedSlot) {
+    res.status(400).send('Invalid request.');
+    return;
+  }
+
+  try {
+    if (!savedSlot.unit) {
+      savedSlot.unit = unit;
+    } else {
+      if (savedSlot.unit === unit) {
+        delete savedSlot.unit;
+      } else {
+        res.status(401).send('Slot already claimed.');
+        return;
+      }
+    }
+
+    await db.insert(meetingDays);
+    res.status(200).send('Success.');
+  } catch {
+    res.status(500).send('An error occurred.');
   }
 });
 

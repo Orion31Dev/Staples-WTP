@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { MeetingDay, Slot as ISlot } from 'wtp-shared';
-import { getMeetingDayFromDay, getMeetingDays, updateMeetingDay } from '../dataUtils';
+import { getMeetingDayFromDay, getMeetingDays, toggleSlotClaim, updateMeetingDay } from '../dataUtils';
 import '../styles/components/Slots.scss';
 import { formatDate } from '../timeUtils';
 
-export default function Slots(props: { day: MeetingDay | Date; back?: () => void; admin: boolean }) {
+export default function Slots(props: { day: MeetingDay | Date; back?: () => void; admin: boolean; delete?: boolean; unit?: number }) {
   let [day, setDay] = useState({} as MeetingDay);
 
   React.useEffect(() => {
@@ -24,6 +24,28 @@ export default function Slots(props: { day: MeetingDay | Date; back?: () => void
     updateMeetingDay(newDay).then(() => setDay(newDay));
   }
 
+  function onClaim(slot: ISlot) {
+    toggleSlotClaim(day, slot, props.unit as number).then(() => {
+      let newDay = {
+        ...day,
+        slots: day.slots.map((s) => {
+          if (
+            s.start.hour === slot.start.hour &&
+            s.start.minutes === slot.start.minutes &&
+            s.end.hour === slot.end.hour &&
+            s.end.minutes === slot.end.minutes
+          ) {
+            if (s.unit) return { ...s, unit: undefined };
+            return { ...s, unit: props.unit };
+          }
+          return s;
+        }),
+      };
+
+      setDay(newDay);
+    });
+  }
+
   return (
     <div className="slots">
       <div className="title">
@@ -35,16 +57,21 @@ export default function Slots(props: { day: MeetingDay | Date; back?: () => void
         </div>
       )}
       <div className="slots-list">
-        {day.slots?.map((slot, i) => (
-          <Slot
-            key={i}
-            slot={slot}
-            onDelete={() => {
-              onDelete(slot);
-            }}
-            admin={props.admin}
-          />
-        ))}
+        {day.slots
+          .map((slot, i) => (
+            <Slot
+              key={i}
+              slot={slot}
+              onDelete={() => {
+                onDelete(slot);
+              }}
+              onClaim={() => {
+                onClaim(slot);
+              }}
+              admin={props.delete || props.delete}
+              unit={props.unit}
+            />
+          ))}
       </div>
       {props.admin && <CreateSlotDialog day={day} onUpdateDay={setDay} />}
     </div>
@@ -191,13 +218,15 @@ function CreateSlotDialog(props: { day: MeetingDay; onUpdateDay: Function }) {
   }
 }
 
-function Slot(props: { slot: ISlot; onDelete: Function; admin?: boolean }) {
+function Slot(props: { slot: ISlot; onDelete: Function; onClaim: Function; admin?: boolean; unit?: number }) {
   return (
     <div
-      className={`slot${props.admin ? ' admin' : ''}`}
+      className={`slot ${props.slot.unit ? 'claimed' : ''}${props.admin ? ' admin' : props.unit ? ' claimable' : ''}`}
       onClick={() => {
         if (props.admin) {
           props.onDelete();
+        } else if (props.unit) {
+          props.onClaim();
         }
       }}
     >
@@ -225,7 +254,11 @@ function Slot(props: { slot: ISlot; onDelete: Function; admin?: boolean }) {
       <div className="length">
         <span>{calculateSlotLength(props.slot)}</span> minutes
       </div>
-      {props.slot.unit && <div className="unit">Unit {props.slot.unit}</div>}
+      {props.slot.unit && (
+        <React.Fragment>
+          | <div className="slot-unit">Unit {props.slot.unit}</div>
+        </React.Fragment>
+      )}
     </div>
   );
 }
@@ -244,7 +277,7 @@ function calculateSlotLength(slot: ISlot) {
   return totalMins;
 }
 
-export function AllSlots() {
+export function AllSlots(props: { admin?: boolean; unit?: number }) {
   let [days, setDays] = useState([] as MeetingDay[]);
 
   useEffect(() => {
@@ -254,7 +287,12 @@ export function AllSlots() {
       for (let key in days) {
         let obj = days[key] as MeetingDay;
 
+        if (props.unit) {
+          obj.slots = obj.slots.filter((slot) => slot.unit === props.unit || slot.unit === undefined);
+        } 
+
         if (obj.slots.length === 0) continue;
+        if (obj.date < new Date()) continue; // Date in past
 
         dayArr.push({ ...obj, date: new Date(obj.date) });
       }
@@ -263,12 +301,12 @@ export function AllSlots() {
     });
   }, []);
 
-  if (days.length === 0) return <div>No Slots</div>;
+  if (days.length === 0) return <div className="no-slots">No Free Slots</div>;
 
   return (
     <div className="all-slot">
       {days.map((day) => {
-        return <Slots day={day} key={day.date.toISOString()} admin={false} />;
+        return <Slots day={day} key={day.date.toISOString()} admin={false} unit={props.unit} delete={props.admin} />;
       })}
     </div>
   );

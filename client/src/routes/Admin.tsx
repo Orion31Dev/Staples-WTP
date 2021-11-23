@@ -2,6 +2,7 @@ import React from 'react';
 import UnitSettings from '../components/admin/UnitSettings';
 import DraftStatusTable from '../components/DraftStatusTable';
 import Schedule from '../components/Schedule';
+import { AllSlots } from '../components/Slots';
 import Tabs from '../components/Tabs';
 import { getUserInfo } from '../oauth/authUtils';
 import '../styles/routes/Admin.scss';
@@ -14,6 +15,7 @@ enum AdminTab {
   NONE,
   UNITS,
   CALENDAR,
+  SCHEDULE,
   DRAFT_STATUSES
 }
 
@@ -67,6 +69,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
           </div>
         )}
         {this.state.tabIndex === AdminTab.CALENDAR && <Schedule admin />}
+        {this.state.tabIndex === AdminTab.SCHEDULE && <AllSlots admin />}
         {this.state.tabIndex === AdminTab.DRAFT_STATUSES && <DraftStatusTable admin />}
       </div>
     );
