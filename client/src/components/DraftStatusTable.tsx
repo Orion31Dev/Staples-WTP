@@ -78,9 +78,9 @@ export default function DraftStatusTable(props: { admin?: boolean }) {
             }
           }}
         >
-          {data[unit.toString() as keyof DraftStatuses].q1 === i && <div className="q1">Q1</div>}
-          {data[unit.toString() as keyof DraftStatuses].q2 === i && <div className="q2">Q2</div>}
-          {data[unit.toString() as keyof DraftStatuses].q3 === i && <div className="q3">Q3</div>}
+          {data[unit.toString() as keyof DraftStatuses].q1 === i && <div className={`q1 ${i === 4 ? 'done' : ''}`}>Q1</div>}
+          {data[unit.toString() as keyof DraftStatuses].q2 === i && <div className={`q2 ${i === 4 ? 'done' : ''}`}>Q2</div>}
+          {data[unit.toString() as keyof DraftStatuses].q3 === i && <div className={`q3 ${i === 4 ? 'done' : ''}`}>Q3</div>}
         </td>
       );
     }

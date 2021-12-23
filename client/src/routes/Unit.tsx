@@ -102,7 +102,7 @@ export default class Unit extends React.Component<UnitProps, UnitState> {
             if (this.state.unitData.topic) this.setState.bind(this)({ tabIndex: tab });
           })}
           {this.state.unitData.gDrive && (
-            <a href={this.state.unitData.gDrive}>
+            <a href={this.state.unitData.gDrive} target={"_blank"} rel="noreferrer">
               <div className="tab">Google Drive</div>
             </a>
           )}
