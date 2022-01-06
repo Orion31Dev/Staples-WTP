@@ -55,7 +55,7 @@ export default function DraftStatusTable(props: { admin?: boolean }) {
       }
 
       arr.push(
-        <tr key={i}>
+        <tr key={i} className={`unit-${i}`}>
           <td className={`unit unit-${i}`}>Unit {i}</td>
           {generateUnitRow(i)}
         </tr>

@@ -45,6 +45,25 @@
       font-size: 0.7em;
     }
 
+    tr.unit-2 {
+      background: linear-gradient(139deg, #1b8f9c, #8e1c94);
+      background-size: 400% 400%;
+
+      animation: unit-done-row-animation 10s ease infinite;
+    }
+
+    @keyframes unit-done-row-animation {
+      0% {
+        background-position: 5% 0%;
+      }
+      50% {
+        background-position: 96% 100%;
+      }
+      100% {
+        background-position: 5% 0%;
+      }
+    }
+
     th,
     td.unit {
       font-family: $fonts-quarto;
