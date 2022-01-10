@@ -7,7 +7,25 @@
 
   table {
     $border-radius: 0.4em;
+    border-radius: $border-radius;
     border-spacing: 0;
+
+    background: linear-gradient(139deg, #1b8f9c, #8e1c94);
+    background-size: 400% 400%;
+
+    animation: unit-done-row-animation 10s ease infinite;
+
+    @keyframes unit-done-row-animation {
+      0% {
+        background-position: 5% 0%;
+      }
+      50% {
+        background-position: 96% 100%;
+      }
+      100% {
+        background-position: 5% 0%;
+      }
+    }
 
     td,
     th {
@@ -39,29 +57,20 @@
       background: $gray-1;
     }
 
+    tbody {
+      tr:nth-of-type(2n - 1) {
+        background: $bkg-color;
+      }
+    }
+
+    tr.done {
+      background: none !important;
+    }
+
     .q1,
     .q2,
     .q3 {
       font-size: 0.7em;
-    }
-
-    tr.unit-2 {
-      background: linear-gradient(139deg, #1b8f9c, #8e1c94);
-      background-size: 400% 400%;
-
-      animation: unit-done-row-animation 10s ease infinite;
-    }
-
-    @keyframes unit-done-row-animation {
-      0% {
-        background-position: 5% 0%;
-      }
-      50% {
-        background-position: 96% 100%;
-      }
-      100% {
-        background-position: 5% 0%;
-      }
     }
 
     th,

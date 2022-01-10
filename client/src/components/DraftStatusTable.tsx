@@ -49,13 +49,17 @@ export default function DraftStatusTable(props: { admin?: boolean }) {
     let arr = [];
 
     for (let i = 1; i <= 6; i++) {
-      if (!data || !data[i.toString() as keyof DraftStatuses]) {
+      let unit = data[i.toString() as keyof DraftStatuses];
+
+      if (!data || !unit) {
         arr.push(<tr key={i}></tr>);
         continue;
       }
 
+      let done = unit.q1 === 4 && unit.q2 === 4 && unit.q3 === 4;
+
       arr.push(
-        <tr key={i} className={`unit-${i}`}>
+        <tr key={i} className={`unit-${i} ${done ? 'done' : ''}`}>
           <td className={`unit unit-${i}`}>Unit {i}</td>
           {generateUnitRow(i)}
         </tr>
