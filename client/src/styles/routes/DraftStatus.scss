@@ -1,0 +1,24 @@
+@import '../style';
+
+.unit-3-article {
+  text-align: center;
+
+  font-size: 2.5em;
+  display: block;
+
+  font-weight: $font-weight-bold;
+
+  div {
+    display: inline-block;
+    border: 0.08em solid $cyan;
+
+    padding: 0.5em 1.2em;
+
+    border-radius: 0.5em;
+
+    &:hover {
+      color: $bkg-color;
+      background: $cyan;
+    }
+  }
+}

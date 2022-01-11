@@ -1,0 +1,19 @@
+@import '../style';
+
+.section.best-unit {
+  width: 80% !important;
+  margin: 0 auto;
+
+  p {
+    font-size: 1.4rem;
+  }
+
+  strong {
+    font-weight: $font-weight-bold;
+  }
+
+  a {
+    color: $cyan;
+    text-decoration: underline;
+  }
+}

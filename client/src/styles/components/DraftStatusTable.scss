@@ -67,6 +67,13 @@
       background: none !important;
     }
 
+    tr.unit-3 {
+      background: linear-gradient(139deg, $yellow, $orange) !important;
+      background-size: 400% 400%;
+
+      animation: unit-done-row-animation 10s ease infinite;
+    }
+
     .q1,
     .q2,
     .q3 {
@@ -80,10 +87,7 @@
     }
 
     td.unit-3 {
-      background: linear-gradient(45deg, $cyan, $purple);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: $bkg-color;
     }
   }
 
