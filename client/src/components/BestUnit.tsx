@@ -24,7 +24,7 @@ export default function BestUnit() {
       </p>
       <p>Clara concurs, stating that the group's “pure talent and skill” is what propelled them to success.</p>
       <p>
-        Right now, Unit 3 is benevolent giving readers the chance to claim <strong>their</strong> signed pocket Constitution. Get yours
+        Right now, Unit 3 is benevolently giving readers the chance to claim <strong>their</strong> signed pocket Constitution. Get yours
         today <a href="/unit/3">here</a> (the Official Staples We The People Website may receive compensation for orders placed through its
         affiliate links).
       </p>
