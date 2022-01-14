@@ -15,8 +15,8 @@ export default function Footer() {
   let [pastSecs, setPastSecs] = useState([] as any[]);
 
   function updateTime() {
-    // Time until January 22, 2022
-    const then = new Date('January 29, 2022 00:00:00').getTime();
+    // Time until Feb 5, 2022
+    const then = new Date('February 5, 2022 12:00:00').getTime();
 
     const now = new Date().getTime();
     const diff = then - now;

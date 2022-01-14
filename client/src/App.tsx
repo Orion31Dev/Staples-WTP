@@ -10,7 +10,7 @@ import Admin from './routes/Admin';
 import Profile from './routes/Profile';
 import Page404 from './routes/Page404';
 import DraftStatus from './routes/DraftStatus';
-import BestUnit from './components/BestUnit';
+import BestUnit from './routes/BestUnit';
 
 function App() {
   return (
