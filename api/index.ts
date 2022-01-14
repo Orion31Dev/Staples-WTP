@@ -221,9 +221,10 @@ app.post('/api/toggle-slot-claim', async (req, res) => {
 
   let userUnit = req.user ? await getUserUnit(req.user) : undefined;
 
-  console.log(req.user, userUnit);
+  console.log(req.user, userUnit, unit);
 
   if (!req.user || (userUnit !== unit && process.env.ADMIN_SUB !== req.user?.sub)) {
+    console.log(req.user ? true : false)
     res.status(401).send('Not authenticated.');
     return;
   }
