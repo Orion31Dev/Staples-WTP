@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import '../styles/components/Footer.scss';
 
 export default function Footer() {
-  let [days, setDays] = useState('');
-  let [hours, setHours] = useState('');
-  let [minutes, setMinutes] = useState('');
-  let [seconds, setSeconds] = useState('');
+  let [days, setDays] = useState('000');
+  let [hours, setHours] = useState('00');
+  let [minutes, setMinutes] = useState('00');
+  let [seconds, setSeconds] = useState('00');
 
   let [col0slide, setCol0Slide] = useState(false);
   let [col1slide, setCol1Slide] = useState(false);
@@ -32,7 +32,7 @@ export default function Footer() {
     setSeconds(seconds.toString().padStart(2, '0'));
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     updateTime();
   }, []);
 
@@ -63,7 +63,7 @@ export default function Footer() {
         updateTime();
       }, 500);
     }, 500);
-  }, [seconds, minutes, hours, pastSecs]);
+  }, [seconds, minutes, hours, pastSecs]);*/
 
   return (
     <div className="footer">
@@ -102,7 +102,7 @@ export default function Footer() {
           <div className="seconds e">&nbsp;</div>
         </div>
       </div>
-      <div className="msg">{window.location.href.includes('unit/3') ? 'There used to be an easter egg here' : 'The competition approaches...'}</div>
+      <div className="msg">{window.location.href.includes('unit/3') ? 'There used to be an easter egg here' : 'The competition is here.'}</div>
       <div className="clock w">
         <div className={'col0 col' + (col0slide ? ' slide' : '')}>
           <div className="days">{subtractFromString(days, 1, true, true, true)}</div>
