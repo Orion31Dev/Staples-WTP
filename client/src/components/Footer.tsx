@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/components/Footer.scss';
 
 export default function Footer() {
@@ -7,12 +7,12 @@ export default function Footer() {
   let [minutes, setMinutes] = useState('00');
   let [seconds, setSeconds] = useState('00');
 
-  let [col0slide, setCol0Slide] = useState(false);
-  let [col1slide, setCol1Slide] = useState(false);
-  let [col2slide, setCol2Slide] = useState(false);
-  let [col3slide, setCol3Slide] = useState(false);
+  // let [col0slide, setCol0Slide] = useState(false);
+  // let [col1slide, setCol1Slide] = useState(false);
+  // let [col2slide, setCol2Slide] = useState(false);
+  // let [col3slide, setCol3Slide] = useState(false);
 
-  let [pastSecs, setPastSecs] = useState([] as any[]);
+  // let [pastSecs, setPastSecs] = useState([] as any[]);
 
   function updateTime() {
     // Time until Feb 5, 2022
