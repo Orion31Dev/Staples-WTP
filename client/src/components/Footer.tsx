@@ -102,7 +102,7 @@ export default function Footer() {
           <div className="seconds e">&nbsp;</div>
         </div>
       </div>
-      <div className="msg">{window.location.href.includes('unit/3') ? 'There used to be an easter egg here' : 'The competition is here.'}</div>
+      <div className="msg">{window.location.href.includes('unit/3') ? 'Best unit fr' : 'The competition is over.'}</div>
       <div className="clock w">
         <div className={'col0 col' + (col0slide ? ' slide' : '')}>
           <div className="days">{subtractFromString(days, 1, true, true, true)}</div>
