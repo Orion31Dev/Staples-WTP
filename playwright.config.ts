@@ -6,8 +6,8 @@ const config: PlaywrightTestConfig = {
 		port: 4173
 	},
 	use: {
-		video: 'on',
-		screenshot: 'on',
+		video: 'retain-on-failure',
+		screenshot: 'only-on-failure',
 	}
 };
 
