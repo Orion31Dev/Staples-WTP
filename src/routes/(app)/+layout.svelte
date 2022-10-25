@@ -1,4 +1,5 @@
 <script>
+	import { afterNavigate } from '$app/navigation';
 	import Clock from '$lib/components/Clock.svelte';
 	import { getNavLinks } from '$lib/scripts/util';
 	import { fly } from 'svelte/transition';
@@ -8,6 +9,10 @@
 
 	$: mobile = width < 768;
 	let hamburgerOpen = false;
+
+	afterNavigate(() => {
+		hamburgerOpen = false;
+	});
 </script>	
 
 <svelte:window bind:innerWidth={width} />

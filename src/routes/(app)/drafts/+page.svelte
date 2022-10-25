@@ -20,39 +20,53 @@
 	/* eslint-disable */
 </script>
 
-<table>
-	<thead>
-		<tr>
-			<th style:width="4em">Unit</th>
-			{#each statusNames as status}
-                <th>{status}</th>
-            {/each}
-		</tr>
-	</thead>
-	<tbody>
-		{#each Object.keys(statuses) as unit}
+<div class="table-wrapper">
+	<table>
+		<thead>
 			<tr>
-				<td>Unit {unit}</td>
-				{#each statusNames as _, c}
-					<td>
-						{#each Object.keys(statuses[unit]) as q}
-							{#if statuses[unit][q] === c}
-								<div class="q{q} c{c} q">{q}</div>
-							{/if}
-						{/each}
-					</td>
+				<th style:width="4em">Unit</th>
+				{#each statusNames as status}
+					<th>{status}</th>
 				{/each}
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{#each Object.keys(statuses) as unit}
+				<tr>
+					<td>Unit {unit}</td>
+					{#each statusNames as _, c}
+						<td>
+							{#each Object.keys(statuses[unit]) as q}
+								{#if statuses[unit][q] === c}
+									<div class="q{q} c{c} q">{q}</div>
+								{/if}
+							{/each}
+						</td>
+					{/each}
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>
 
 <style lang="scss">
+	.table-wrapper {
+		overflow-x: scroll;
+
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0 1em;
+	}
+
 	table {
 		font-size: 1.6em;
 
-		width: 95%;
-		margin: 0 auto 1em;
+		overflow-x: scroll;
+
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 1000px;
+		margin-bottom: 1em;
 
 		border-collapse: collapse;
 

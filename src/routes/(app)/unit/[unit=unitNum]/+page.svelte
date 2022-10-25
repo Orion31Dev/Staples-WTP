@@ -38,7 +38,7 @@
 		{#if !!unitQuestions}
 			{#each Object.keys(unitQuestions) as q, i}
 				<div class="question">
-					<div class="main">{unitQuestions[q].main}</div>
+					<div class="main">{i + 1}. {unitQuestions[q].main}</div>
 					<ul>
 						<li>{unitQuestions[q].sub1}</li>
 						<li>{unitQuestions[q].sub2}</li>
@@ -110,6 +110,22 @@
 			margin: 0.4em 0;
 
 			text-align: center;
+		}
+	}
+
+	@media screen and (max-width: $mobile-width) {
+		.unit-title,
+		.unit-content {
+			float: none;
+
+			width: 100%;
+		}
+
+		.unit-title {
+			position: relative;
+
+			height: 40vh;
+			min-height: auto;
 		}
 	}
 
