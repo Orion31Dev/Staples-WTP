@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-       - run: |
+      - run: |
           touch .env
           echo "PUBLIC_FIREBASE_API_KEY=$FIREBASE_API_KEY" >> .env
       - run: yarn install --immutable && yarn build
