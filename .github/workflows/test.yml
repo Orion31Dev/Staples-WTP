@@ -22,5 +22,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --immutable
+      - run: |
+          npx playwright install-deps
+          npx playwright install
       - run: yarn build
       - run: yarn test
