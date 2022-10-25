@@ -1,34 +1,43 @@
 <script lang="ts">
-	const statuses = [
-		[1, 0, 0],
-		[3, 3, 4],
-		[4, 4, 4],
-		[1, 2, 3],
-		[3, 2, 1],
-		[2, 4, 1]
-	];
+	import { analytics, getDraftStatuses } from '$lib/scripts/firebase';
+	import { defaultStatuses, statusNames } from '$lib/scripts/util';
+	import { logEvent } from 'firebase/analytics';
+	import { onMount } from 'svelte';
+
+	let statuses = defaultStatuses;
+
+	onMount(async () => {
+		logEvent(analytics, 'page_view', {
+			page_title: 'Draft Statuses',
+			page_location: window.location.href,
+			page_path: window.location.pathname
+		});
+
+		statuses = await getDraftStatuses();
+		console.log(statuses);
+	});
+
+	/* eslint-disable */
 </script>
 
 <table>
 	<thead>
 		<tr>
 			<th style:width="4em">Unit</th>
-			<th>Needs Work</th>
-			<th>Ok. More Work To Do</th>
-			<th>Close</th>
-			<th>Even Closer</th>
-			<th>Done</th>
+			{#each statusNames as status}
+                <th>{status}</th>
+            {/each}
 		</tr>
 	</thead>
 	<tbody>
-		{#each [...Array(6).keys()] as i}
+		{#each Object.keys(statuses) as unit}
 			<tr>
-				<td>Unit {i + 1}</td>
-				{#each [...Array(5).keys()] as c}
+				<td>Unit {unit}</td>
+				{#each statusNames as _, c}
 					<td>
-						{#each [...Array(3).keys()] as q}
-							{#if statuses[i][q] === c}
-								<div class="q{q + 1} c{c} q">{q + 1}</div>
+						{#each Object.keys(statuses[unit]) as q}
+							{#if statuses[unit][q] === c}
+								<div class="q{q} c{c} q">{q}</div>
 							{/if}
 						{/each}
 					</td>

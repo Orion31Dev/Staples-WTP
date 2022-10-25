@@ -1,5 +1,16 @@
 <script>
 	import UnitLink from '$lib/components/UnitLink.svelte';
+	import { analytics } from '$lib/scripts/firebase';
+	import { logEvent } from 'firebase/analytics';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		logEvent(analytics, 'page_view', {
+			page_title: 'Units',
+			page_location: window.location.href,
+			page_path: window.location.pathname
+		});
+	});
 </script>
 
 <svelte:head>
@@ -20,9 +31,8 @@
 	.unit-links {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-
 		flex-wrap: wrap;
+		justify-content: center;
 
 		@media (min-width: 1000px) {
 			.br {
