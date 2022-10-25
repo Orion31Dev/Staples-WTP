@@ -12,16 +12,18 @@ const config = {
 			}
 		})
 	],
-	prerender: {
-		default: true
-	},
 	kit: {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: null,
 			precompress: false
-		})
+		}),
+		prerender: {
+			concurrency: 1,
+			crawl: true,
+			enabled: true,
+			entries: ['*', '/unit/1', '/unit/2', '/unit/3', '/unit/4', '/unit/5', '/unit/6']
+		}
 	}
 };
 
