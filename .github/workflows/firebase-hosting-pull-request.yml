@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: yarn install --immutable && yarn build
-      - run: |
+       - run: |
           touch .env
           echo "PUBLIC_FIREBASE_API_KEY=$FIREBASE_API_KEY" >> .env
+      - run: yarn install --immutable && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
