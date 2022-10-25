@@ -7,9 +7,17 @@ jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
+
+    env:
+      FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+
     steps:
       - uses: actions/checkout@v2
       - run: yarn install --immutable && yarn build
+      - run: |
+          touch .env
+          echo "PUBLIC_FIREBASE_API_KEY=$FIREBASE_API_KEY" >> .env
+      - uses: FirebaseExtended/action-hosting-deploy@v0
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
