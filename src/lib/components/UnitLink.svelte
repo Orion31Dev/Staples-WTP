@@ -23,38 +23,37 @@
 
 <style lang="scss">
 	.unit-link {
-		width: 300px;
-		height: 300px;
-
-		margin: 1rem;
-
-		border-radius: $border-radius * 3;
-
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 
-		background: $blue;
+		width: 300px;
+		height: 300px;
+		margin: 1rem;
 
 		transition: background-color $transition, transform $transition;
+
+		border-radius: $border-radius * 3;
+		background: $blue;
 
 		@media (max-width: $mobile-width) {
 			width: 42vw;
 			height: 42vw;
-
-			margin: .5rem;
+			margin: 0.5rem;
 
 			border-radius: $border-radius * 2;
 		}
 
 		&:hover {
-			background: $darkblue;
 			transform: scale(1.05);
+
+			background: $darkblue;
 		}
 
 		object {
-			pointer-events: none;
 			height: 80%;
+
+			pointer-events: none;
 		}
 	}
 </style>

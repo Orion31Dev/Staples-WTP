@@ -20,6 +20,7 @@
 <header>
 	<a class="title" href="/">Staples We the People</a>
 	{#if mobile}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
 			class="hamburger-menu"
 			class:open={hamburgerOpen}
