@@ -1,0 +1,37 @@
+.title {
+	font-family: $font-title;
+
+	font-weight: $font-weight-bold;
+}
+
+.flex-align-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.box-link {
+	padding: 0.2em 0.3em;
+
+	display: flex;
+	align-content: center;
+	justify-content: center;
+
+	border-radius: $border-radius;
+
+	border: 2px solid $blue;
+
+	margin: 0.2em 0.1em;
+
+	transition: color $transition, background-color $transition;
+
+	&:hover {
+		color: $bkg;
+		background: $color;
+	}
+}
+
+.title {
+	color: $blue;
+}

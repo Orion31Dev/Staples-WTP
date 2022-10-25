@@ -1,0 +1,29 @@
+@import 'values';
+@import 'font';
+@import 'basic-components';
+
+html,
+body,
+main {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+}
+
+body {
+	font-family: $font-body;
+	font-size: calc(16px + 0.390625vw);
+
+	font-weight: 400;
+
+  background: $bkg;
+  color: $color;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
