@@ -21,8 +21,10 @@ jobs:
         run: yarn install --immutable
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Build project
+        run: yarn build
       - name: Run Playwright tests
-        run: npx playwright test
+        run: yarn test
       - uses: actions/upload-artifact@v3
         if: always()
         with:
