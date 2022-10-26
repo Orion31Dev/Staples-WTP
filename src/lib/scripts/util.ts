@@ -1,7 +1,8 @@
 export function getNavLinks() {
 	return [
 		{ name: 'Units', path: '/units' },
-		{ name: 'Draft Statuses', path: '/drafts' }
+		{ name: 'Draft Statuses', path: '/drafts' },
+		{ name: 'Kam', path: '/kam' }
 	];
 }
 

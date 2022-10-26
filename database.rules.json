@@ -1,6 +1,9 @@
 {
-  "rules": {
-    ".read": true,
-    ".write": false
-  }
+	"rules": {
+		".read": true,
+		".write": false,
+		"drafts": {
+			".write": "root.child('admin/' + auth.uid).val() === true"
+		}
+	}
 }
