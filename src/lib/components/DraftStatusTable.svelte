@@ -147,7 +147,7 @@
 	.admin-status-banner {
 		position: fixed;
 		z-index: 100;
-		top: 1em;
+		top: 5em;
 		left: -1em;
 
 		display: flex;
@@ -157,9 +157,9 @@
 		height: 2em;
 		padding: 0.5em 1em 0.5em 3em;
 
-		color: $color;
+		color: $bkg;
 		border-radius: $border-radius;
-		background-color: $bkg;
+		background-color: $color;
 		box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
 
 		&.error {
