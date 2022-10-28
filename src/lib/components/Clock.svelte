@@ -160,24 +160,27 @@
 	.clock-wrapper {
 		height: 57vw;
 
-		background: $darkblue;
 		color: $bkg;
+		background: $darkblue;
+
+		@media screen and (max-width: $mobile-width) {
+			padding: 2em 0;
+		}
 	}
 
 	.clock {
+		font-family: 'Baloo';
+		font-size: 15.95vw;
+		font-weight: 1000;
+
+		position: relative;
+
 		display: flex;
+		overflow: hidden;
 		align-items: center;
 		justify-content: center;
 
 		height: 100%;
-
-		font-family: 'Baloo';
-		font-weight: 1000;
-		font-size: 15.95vw;
-
-		position: relative;
-
-		overflow: hidden;
 
 		.active,
 		.inactive {
@@ -195,8 +198,8 @@
 		}
 
 		.active {
-			z-index: 10;
 			position: absolute;
+			z-index: 10;
 
 			.days {
 				clip-path: polygon(0% 18%, 0% 31%, 100% 31%, 100% 18%);
@@ -216,12 +219,16 @@
 		}
 
 		.col {
-			margin: 0em -0.02em;
 			display: flex;
-			flex-direction: column;
 			align-items: center;
+			flex-direction: column;
 
 			width: 1.25em;
+			margin: 0 -0.02em;
+
+			@media screen and (max-width: $mobile-width) {
+				margin: 0 0.01em;
+			}
 
 			&.days {
 				width: 1.6em;
@@ -237,19 +244,19 @@
 		}
 
 		.stressor {
-			position: absolute;
+			font-family: $font-sans;
 			font-size: 0.1em;
 
-			font-family: $font-sans;
-			letter-spacing: 1em;
-
-			background: $white;
-			color: $darkblue;
-			padding: 0.3em 4.4em;
+			position: absolute;
 
 			margin-bottom: 0.5rem;
+			padding: 0.3em 4.4em;
 
+			letter-spacing: 1em;
+
+			color: $darkblue;
 			border-radius: $border-radius;
+			background: $white;
 
 			@media (max-width: 768px) {
 				display: none;

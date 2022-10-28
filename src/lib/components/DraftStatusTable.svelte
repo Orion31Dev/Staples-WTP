@@ -131,6 +131,7 @@
 			{/each}
 		</tbody>
 	</table>
+	<div class="scroll-msg">The table can be horizontally scrolled.</div>
 </div>
 
 <style lang="scss">
@@ -142,6 +143,16 @@
 		box-sizing: border-box;
 		width: 100%;
 		padding: 0 1em;
+	}
+
+	.scroll-msg {
+		display: none;
+
+		@media screen and (max-width: $mobile-width) {
+			display: block;
+
+			margin: 1em 0;
+		}
 	}
 
 	.admin-status-banner {
@@ -251,6 +262,17 @@
 					color: $red;
 					background: $bkg;
 				}
+			}
+		}
+
+		@media screen and (max-width: $mobile-width) {
+			font-size: 1.2em;
+
+			margin-bottom: 0;
+
+			td,
+			tr {
+				padding: 0.3em 0;
 			}
 		}
 	}
