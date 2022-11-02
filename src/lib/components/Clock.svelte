@@ -231,7 +231,8 @@
 			}
 
 			&.days {
-				width: 1.6em;
+				width: 1.65em;
+				margin: 0.02em;
 			}
 
 			.row {
