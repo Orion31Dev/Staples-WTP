@@ -40,6 +40,10 @@ export async function getQuestions() {
 	return (await get(ref(db, 'questions'))).val();
 }
 
+export async function getLinks() {
+	return (await get(ref(db, 'links'))).val();
+}
+
 async function isUserAdmin(uid: string) {
 	return (await get(ref(db, `admin/${uid}`))).val() === true;
 }
