@@ -202,7 +202,7 @@
 			z-index: 10;
 
 			.days {
-				clip-path: polygon(0% 18%, 0% 31%, 100% 31%, 100% 18%);
+				clip-path: polygon(-40% 18%, -40% 31%, 140% 31%, 140% 18%);
 			}
 
 			.hours {
@@ -232,10 +232,11 @@
 
 			&.days {
 				width: 1.65em;
-				margin: 0.2em;
 			}
 
 			.row {
+				overflow: visible;
+
 				margin: -0.35em 0;
 			}
 
