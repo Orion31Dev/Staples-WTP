@@ -27,7 +27,7 @@
 
 	function getTimeUntil(): { days: number; hours: number; minutes: number; seconds: number } {
 		// Time until Feb 5, 2023
-		const then = new Date('February 5, 2023 22:12:40').getTime();
+		const then = new Date('January 26, 2023 07:00:00').getTime();
 
 		const now = new Date().getTime();
 		const diff = then - now;
@@ -232,7 +232,7 @@
 
 			&.days {
 				width: 1.65em;
-				margin: 0.02em;
+				margin: 0.2em;
 			}
 
 			.row {
