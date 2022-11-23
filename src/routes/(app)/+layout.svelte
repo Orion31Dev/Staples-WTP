@@ -209,9 +209,6 @@
 
 		@media (max-width: $mobile-width) {
 			justify-content: center;
-			*:not(.quote) {
-				display: none;
-			}
 		}
 	}
 </style>
