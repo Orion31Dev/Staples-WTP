@@ -61,8 +61,6 @@
 </div>
 
 <footer>
-	<div class="quote">In order to form a more perfect union</div>
-	<div class="sep">//</div>
 	<div class="credit">Website by <a href="https://ryansalik.com">Ryan Salik</a></div>
 	<div class="sep">//</div>
 	<a href="https://github.com/rsalik">Source Code</a>
