@@ -14,4 +14,16 @@ import { analytics } from '$lib/scripts/firebase';
 	});
 </script>
 
+<a class="unit-3 box-link" href="/best-unit">Unit 3 Finished Their Statements! Click to Read More.</a>
 <DraftStatusTable />
+
+<style lang="scss">
+	.unit-3 {
+		font-size: 1.5em;
+
+		box-sizing: border-box;
+		width: 97%;
+		margin: 0.5em auto;
+		padding: 0.5em;
+	}
+</style>
