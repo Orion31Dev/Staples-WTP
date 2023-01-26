@@ -1,7 +1,7 @@
 <script lang="ts">
 	const SLIDE_TIME = 400;
 
-	let { days, hours, minutes, seconds } = getTimeUntil();
+	let { days, hours, minutes, seconds } = {days: 0, hours: 0, minutes: 0, seconds: 0} //getTimeUntil();
 
 	let slideDays = false;
 	let slideHours = false;
@@ -45,41 +45,41 @@
 		};
 	}
 
-	setInterval(() => {
-		const timeUntil = getTimeUntil();
+	// setInterval(() => {
+	// 	const timeUntil = getTimeUntil();
 
-		if (timeUntil.seconds !== seconds && !slideSeconds) {
-			slideSeconds = true;
-			setTimeout(() => {
-				slideSeconds = false;
-				seconds = timeUntil.seconds;
-			}, SLIDE_TIME);
-		}
+	// 	if (timeUntil.seconds !== seconds && !slideSeconds) {
+	// 		slideSeconds = true;
+	// 		setTimeout(() => {
+	// 			slideSeconds = false;
+	// 			seconds = timeUntil.seconds;
+	// 		}, SLIDE_TIME);
+	// 	}
 
-		if (timeUntil.minutes !== minutes && !slideMinutes) {
-			slideMinutes = true;
-			setTimeout(() => {
-				slideMinutes = false;
-				minutes = timeUntil.minutes;
-			}, SLIDE_TIME);
-		}
+	// 	if (timeUntil.minutes !== minutes && !slideMinutes) {
+	// 		slideMinutes = true;
+	// 		setTimeout(() => {
+	// 			slideMinutes = false;
+	// 			minutes = timeUntil.minutes;
+	// 		}, SLIDE_TIME);
+	// 	}
 
-		if (timeUntil.hours !== hours && !slideHours) {
-			slideHours = true;
-			setTimeout(() => {
-				slideHours = false;
-				hours = timeUntil.hours;
-			}, SLIDE_TIME);
-		}
+	// 	if (timeUntil.hours !== hours && !slideHours) {
+	// 		slideHours = true;
+	// 		setTimeout(() => {
+	// 			slideHours = false;
+	// 			hours = timeUntil.hours;
+	// 		}, SLIDE_TIME);
+	// 	}
 
-		if (timeUntil.days !== days && !slideDays) {
-			slideDays = true;
-			setTimeout(() => {
-				slideDays = false;
-				days = timeUntil.days;
-			}, SLIDE_TIME);
-		}
-	}, 200);
+	// 	if (timeUntil.days !== days && !slideDays) {
+	// 		slideDays = true;
+	// 		setTimeout(() => {
+	// 			slideDays = false;
+	// 			days = timeUntil.days;
+	// 		}, SLIDE_TIME);
+	// 	}
+	// }, 200);
 </script>
 
 <div class="clock-wrapper">
@@ -152,7 +152,7 @@
 				<div class="row empty">&nbsp;</div>
 			</div>
 		</div>
-		<div class="stressor">THE COMPETITION APPROACHES</div>
+		<div class="stressor">THE COMPETITION IS HERE</div>
 	</div>
 </div>
 
@@ -231,7 +231,7 @@
 			}
 
 			&.days {
-				width: 1.65em;
+				width: 1.75em;
 			}
 
 			.row {
