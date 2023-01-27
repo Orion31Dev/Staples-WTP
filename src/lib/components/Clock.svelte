@@ -152,7 +152,7 @@
 				<div class="row empty">&nbsp;</div>
 			</div>
 		</div>
-		<div class="stressor">THE COMPETITION IS APPROACHES</div>
+		<div class="stressor">THE COMPETITION APPROACHES</div>
 	</div>
 </div>
 
