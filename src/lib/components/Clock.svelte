@@ -45,41 +45,41 @@
 		};
 	}
 
-	// setInterval(() => {
-	// 	const timeUntil = getTimeUntil();
+	setInterval(() => {
+		const timeUntil = getTimeUntil();
 
-	// 	if (timeUntil.seconds !== seconds && !slideSeconds) {
-	// 		slideSeconds = true;
-	// 		setTimeout(() => {
-	// 			slideSeconds = false;
-	// 			seconds = timeUntil.seconds;
-	// 		}, SLIDE_TIME);
-	// 	}
+		if (timeUntil.seconds !== seconds && !slideSeconds) {
+			slideSeconds = true;
+			setTimeout(() => {
+				slideSeconds = false;
+				seconds = timeUntil.seconds;
+			}, SLIDE_TIME);
+		}
 
-	// 	if (timeUntil.minutes !== minutes && !slideMinutes) {
-	// 		slideMinutes = true;
-	// 		setTimeout(() => {
-	// 			slideMinutes = false;
-	// 			minutes = timeUntil.minutes;
-	// 		}, SLIDE_TIME);
-	// 	}
+		if (timeUntil.minutes !== minutes && !slideMinutes) {
+			slideMinutes = true;
+			setTimeout(() => {
+				slideMinutes = false;
+				minutes = timeUntil.minutes;
+			}, SLIDE_TIME);
+		}
 
-	// 	if (timeUntil.hours !== hours && !slideHours) {
-	// 		slideHours = true;
-	// 		setTimeout(() => {
-	// 			slideHours = false;
-	// 			hours = timeUntil.hours;
-	// 		}, SLIDE_TIME);
-	// 	}
+		if (timeUntil.hours !== hours && !slideHours) {
+			slideHours = true;
+			setTimeout(() => {
+				slideHours = false;
+				hours = timeUntil.hours;
+			}, SLIDE_TIME);
+		}
 
-	// 	if (timeUntil.days !== days && !slideDays) {
-	// 		slideDays = true;
-	// 		setTimeout(() => {
-	// 			slideDays = false;
-	// 			days = timeUntil.days;
-	// 		}, SLIDE_TIME);
-	// 	}
-	// }, 200);
+		if (timeUntil.days !== days && !slideDays) {
+			slideDays = true;
+			setTimeout(() => {
+				slideDays = false;
+				days = timeUntil.days;
+			}, SLIDE_TIME);
+		}
+	}, 200);
 </script>
 
 <div class="clock-wrapper">
@@ -152,7 +152,7 @@
 				<div class="row empty">&nbsp;</div>
 			</div>
 		</div>
-		<div class="stressor">THE COMPETITION IS HERE</div>
+		<div class="stressor">THE COMPETITION IS APPROACHES</div>
 	</div>
 </div>
 
