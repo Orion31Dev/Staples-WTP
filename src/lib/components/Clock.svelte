@@ -1,7 +1,7 @@
 <script lang="ts">
 	const SLIDE_TIME = 400;
 
-	let { days, hours, minutes, seconds } = {days: 0, hours: 0, minutes: 0, seconds: 0} //getTimeUntil();
+	let { days, hours, minutes, seconds } = getTimeUntil();
 
 	let slideDays = false;
 	let slideHours = false;
@@ -27,7 +27,7 @@
 
 	function getTimeUntil(): { days: number; hours: number; minutes: number; seconds: number } {
 		// Time until Feb 5, 2023
-		const then = new Date('January 26, 2023 07:00:00').getTime();
+		const then = new Date('April 22, 2023 07:00:00').getTime();
 
 		const now = new Date().getTime();
 		const diff = then - now;
