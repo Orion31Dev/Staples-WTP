@@ -1,9 +1,8 @@
 <script lang="ts">
 	import DraftStatusTable from '$lib/components/DraftStatusTable.svelte';
-import { analytics } from '$lib/scripts/firebase';
+	import { analytics } from '$lib/scripts/firebase';
 	import { logEvent } from 'firebase/analytics';
 	import { onMount } from 'svelte';
-
 
 	onMount(async () => {
 		logEvent(analytics, 'page_view', {
@@ -14,7 +13,6 @@ import { analytics } from '$lib/scripts/firebase';
 	});
 </script>
 
-<a class="unit-3 box-link" href="/best-unit">Unit 3 Finished Their Statements! Click to Read More.</a>
 <DraftStatusTable />
 
 <style lang="scss">
