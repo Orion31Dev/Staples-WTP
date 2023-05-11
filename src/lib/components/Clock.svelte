@@ -152,11 +152,12 @@
 				<div class="row empty">&nbsp;</div>
 			</div>
 		</div>
-		<div class="stressor">THE COMPETITION IS HERE</div>
+		<div class="stressor">THE COMPETITION IS OVER</div>
 	</div>
 </div>
 
 <style lang="scss">
+	$clock-color: mix($white, $darkblue, 50%);
 	.clock-wrapper {
 		height: 57vw;
 
@@ -181,6 +182,8 @@
 		justify-content: center;
 
 		height: 100%;
+
+		color: $clock-color;
 
 		.active,
 		.inactive {
@@ -258,7 +261,7 @@
 
 			color: $darkblue;
 			border-radius: $border-radius;
-			background: $white;
+			background: $clock-color;
 
 			@media (max-width: 768px) {
 				display: none;
